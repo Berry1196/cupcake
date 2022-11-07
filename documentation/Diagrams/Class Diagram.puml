@@ -38,6 +38,7 @@ int price
 User --* Cart
 User --* Order
 Order --* Cake
+Cart --* Cake
 Cake --* Bottom
 Cake --* Topping
 
