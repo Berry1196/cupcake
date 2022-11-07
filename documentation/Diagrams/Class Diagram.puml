@@ -1,27 +1,46 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class User
-class Cart
-class Cake
-class Order
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class User {
+String username
+String password
+String role
+int balance
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Cart{
+Arraylist <Cake> cakesInCart
 }
+
+class Order {
+Arraylist <Cake> cakesInOrder
+int orderId
+TimeStamp date
+}
+
+class Cake{
+Arraylist <Bottom> bottoms
+Arraylist <Topping> toppings
+int quantity
+Cake(Bottom bottom, Topping topping, int quantity
+}
+
+class Bottom{
+String bottom
+int price
+}
+
+class Topping{
+String topping
+int price
+}
+
+User --* Cart
+User --* Order
+Order --* Cake
+Cake --* Bottom
+Cake --* Topping
+
+
 
 @enduml
