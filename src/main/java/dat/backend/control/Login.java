@@ -1,8 +1,12 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.Bottom;
+import dat.backend.model.entities.Topping;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.BottomFacade;
+import dat.backend.model.persistence.ToppingFacade;
 import dat.backend.model.persistence.UserFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "login", urlPatterns = {"/login"} )
 public class Login extends HttpServlet
@@ -44,13 +49,21 @@ public class Login extends HttpServlet
             User user = UserFacade.login(username, password, connectionPool);
             session = request.getSession();
             session.setAttribute("user", user); // adding user object to session scope
+
+            List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
+            request.setAttribute("bottomList", bottomList);
+            List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
+            request.setAttribute("toppingList", toppingList);
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+
         }
         catch (DatabaseException e)
         {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+
+
     }
 
 }

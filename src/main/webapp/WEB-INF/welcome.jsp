@@ -8,11 +8,13 @@
          Welcome to the logged in area
     </jsp:attribute>
 
+
     <jsp:attribute name="footer">
         Logged in area
     </jsp:attribute>
 
     <jsp:body>
+
 
         <p>You should be logged in now</p>
 
@@ -24,6 +26,26 @@
             <p>You are not logged in yet. You can do it here: <a
                     href="../login.jsp">Login</a></p>
         </c:if>
+
+
+
+
+        HER:
+        <c:forEach var="bottom" items="${requestScope.bottomList}">
+
+            <td> ${bottom.bottomId} - ${bottom.bottomName} - ${bottom.bottomPrice}</td>
+
+        </c:forEach>
+
+        HER:
+        <c:forEach var="topping" items="${requestScope.toppingList}">
+
+            <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
+
+        </c:forEach>
+
+
+
 
     </jsp:body>
 
