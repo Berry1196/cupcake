@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+
 class User {
 String username
 String password
@@ -22,7 +23,7 @@ class Cake{
 Arraylist <Bottom> bottoms
 Arraylist <Topping> toppings
 int quantity
-Cake(Bottom bottom, Topping topping, int quantity
+Cake(Bottom bottom, Topping topping, int quantity)
 }
 
 class Bottom{
