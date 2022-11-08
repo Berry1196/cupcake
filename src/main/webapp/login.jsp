@@ -7,7 +7,10 @@
 <t:pagetemplate>
     <jsp:attribute name="header">
              Login
+        <br>
+        <br>
     </jsp:attribute>
+
 
     <jsp:attribute name="footer">
             Login
@@ -15,14 +18,30 @@
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+        <h4>Du kan logge på her</h4>
 
         <form action="login" method="post">
-            <label for="username">Username: </label>
+            <label for="username">Brugernavn: </label>
             <input type="text" id="username" name="username"/>
-            <label for="password">Password: </label>
+            <label for="password">Adgangskode: </label>
             <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
+            <input type="submit" value="Log in"/>
+        </form>
+
+        <br>
+        <br>
+
+        <h4>Eller oprette dig som ny kunde</h4>
+        <form action="createuserform" method="post">
+            <label for="newusername">Brugernavn: </label>
+            <input type="text" id="newusername" name="newusername"/> <br>
+            <label for="newpassword">Adgangskode: </label>
+            <input type="password" id="newpassword" name="newpassword"/><br>
+            <label for="repnewpassword">Gentag adgangskode: </label>
+            <input type="password" id="repnewpassword" name="repnewpassword"/><br>
+            <input type="submit" value="Opret"/>
+            <br>
+                ${sessionScope.besked}
         </form>
 
 
