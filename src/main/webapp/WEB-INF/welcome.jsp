@@ -28,8 +28,6 @@
         </c:if>
 
 
-
-
         HER:
         <c:forEach var="bottom" items="${requestScope.bottomList}">
 
@@ -37,14 +35,41 @@
 
         </c:forEach>
 
+
         HER:
         <c:forEach var="topping" items="${requestScope.toppingList}">
 
             <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
 
         </c:forEach>
-
-
+        <div class="light-grey">
+            <div class="row">
+                <div class="col-4 form-group inline ">
+                    <select class="form-select" id="tops" aria-label=".form-select-lg example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Choko</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-4 form-group inline ">
+                    <select class="form-select" id="bots" aria-label=".form-select-lg example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Choko</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-2 form-group inline ">
+                    <select class="form-select" id="quantity" aria-label=".form-select-lg example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">Choko</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
 
     </jsp:body>

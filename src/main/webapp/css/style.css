@@ -11,5 +11,12 @@ th, td {
     padding:15px;
 }
 
+.light-grey{
 
+    background-color: #f0f0f0;
+}
+.inline {
+    float: left;
+    margin-right: 5px;
+}
 
