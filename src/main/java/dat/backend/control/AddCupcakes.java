@@ -17,6 +17,11 @@ import java.util.List;
 public class AddCupcakes extends HttpServlet {
 
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    ArrayList<Cake> cakesInCart;
+    @Override
+    public void init() throws ServletException {
+        cakesInCart = new ArrayList<>();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,18 +35,19 @@ public class AddCupcakes extends HttpServlet {
         String bottom = request.getParameter("bottom");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        User user = (User) request.getAttribute("user");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
-
-        ArrayList<Cake> cakesInCart = new ArrayList<>();
 
         request.setAttribute("topping", topping);
         request.setAttribute("bottom", bottom);
         request.setAttribute("quantity", quantity);
 
-       // cakesInCart.add(new Cake( new Bottom(bottom), new Topping(topping),5));
-       // request.setAttribute("cakesInCart", cakesInCart);
+        //cakesInCart.add(new Cake( new Bottom(bottom), new Topping(topping),quantity));
 
+        cakesInCart.add(new Cake( new Bottom(bottom), new Topping(topping),quantity));
+
+        request.setAttribute("cakesInCart", cakesInCart);
         List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
         request.setAttribute("bottomList", bottomList);
         List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);

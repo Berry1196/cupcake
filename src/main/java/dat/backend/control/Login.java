@@ -54,8 +54,8 @@ public class Login extends HttpServlet
             List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
             request.setAttribute("toppingList", toppingList);
 
-
-            ArrayList<Cake> cakesInCart = new ArrayList<>();
+            ShoppingCart shoppingCart = new ShoppingCart();
+            ArrayList<Cake> cakesInCart = shoppingCart.getCakesInCart();
             request.setAttribute("cakesInCart", cakesInCart);
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);

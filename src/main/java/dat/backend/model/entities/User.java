@@ -18,6 +18,9 @@ public class User
 
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
 
     public String getUsername()
     {
