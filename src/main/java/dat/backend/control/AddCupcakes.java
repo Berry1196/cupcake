@@ -1,10 +1,7 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.Cake;
-import dat.backend.model.entities.ShoppingCart;
-import dat.backend.model.entities.Topping;
+import dat.backend.model.entities.*;
 import dat.backend.model.persistence.BottomFacade;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.ToppingFacade;
@@ -33,9 +30,10 @@ public class AddCupcakes extends HttpServlet {
         String bottom = request.getParameter("bottom");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
+        User user = (User) request.getAttribute("user");
 
 
-        //ArrayList<Cake> cakesInCart =
+        ArrayList<Cake> cakesInCart = new ArrayList<>();
 
         request.setAttribute("topping", topping);
         request.setAttribute("bottom", bottom);

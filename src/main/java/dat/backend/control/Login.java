@@ -1,10 +1,7 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Bottom;
-import dat.backend.model.entities.ShoppingCart;
-import dat.backend.model.entities.Topping;
-import dat.backend.model.entities.User;
+import dat.backend.model.entities.*;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.BottomFacade;
 import dat.backend.model.persistence.ToppingFacade;
@@ -18,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "login", urlPatterns = {"/login"} )
@@ -55,6 +53,10 @@ public class Login extends HttpServlet
             request.setAttribute("bottomList", bottomList);
             List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
             request.setAttribute("toppingList", toppingList);
+
+
+            ArrayList<Cake> cakesInCart = new ArrayList<>();
+            request.setAttribute("cakesInCart", cakesInCart);
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 

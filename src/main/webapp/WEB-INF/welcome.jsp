@@ -57,12 +57,17 @@
                 </div>
             </div>
 
-            Her->${requestScope.cakesInCart.size()}
-            Her->${requestScope.topping}
-            Her->${requestScope.bottom}
-            Her->${requestScope.quantity}
+
         </form>
 
+        <c:forEach var="cake" items="${requestScope.}">
+            <option value="${bottom.bottomName}">${bottom.bottomName}</option>
+        </c:forEach>
+
+        Her->${requestScope.cakesInCart.size()}
+        Her->${requestScope.topping}
+        Her->${requestScope.bottom}
+        Her->${requestScope.quantity}
     </jsp:body>
 
 </t:pagetemplate>
