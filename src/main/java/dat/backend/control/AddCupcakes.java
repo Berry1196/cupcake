@@ -31,17 +31,18 @@ public class AddCupcakes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String topping = request.getParameter("topping");
         String bottom = request.getParameter("bottom");
-        //int quantity = Integer.parseInt(request.getParameter("qty"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 
 
-        ArrayList<Cake> cakesInCart =
+        //ArrayList<Cake> cakesInCart =
 
         request.setAttribute("topping", topping);
         request.setAttribute("bottom", bottom);
+        request.setAttribute("quantity", quantity);
 
-        cakesInCart.add(new Cake( new Bottom(bottom), new Topping(topping),5));
-        request.setAttribute("cakesInCart", cakesInCart);
+       // cakesInCart.add(new Cake( new Bottom(bottom), new Topping(topping),5));
+       // request.setAttribute("cakesInCart", cakesInCart);
 
         List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
         request.setAttribute("bottomList", bottomList);
