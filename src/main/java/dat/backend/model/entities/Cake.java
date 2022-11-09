@@ -24,4 +24,16 @@ public class Cake {
     public int getQuantity() {
         return quantity;
     }
+
+    public void setBottom(Bottom bottom) {
+        this.bottom = bottom;
+    }
+
+    public void setTopping(Topping topping) {
+        this.topping = topping;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
