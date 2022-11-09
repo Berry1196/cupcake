@@ -30,7 +30,7 @@ public class EditCart extends HttpServlet {
         request.setAttribute("toppingName", toppingName);
         request.setAttribute("cakeIndex", cakeIndex);
 
-        request.setAttribute("shoppingCart", shoppingCart.getCakesInCart().);
+        //request.setAttribute("shoppingCart", shoppingCart.getCakesInCart().);
 
         request.getRequestDispatcher("editCart.jsp").forward(request, response);
     }
