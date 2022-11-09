@@ -25,7 +25,7 @@
 
         </c:forEach>
         <br>
-        Ialt: ${requestScope.shoppingCart.totalCartPrice}kr<br>
+
 
 
 
