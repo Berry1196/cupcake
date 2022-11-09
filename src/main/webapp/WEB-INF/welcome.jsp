@@ -31,7 +31,7 @@
                     <select class="form-select" name="topping" aria-label=".form-select-lg example">
                         <option selected>Vælg top</option>
                         <c:forEach var="topping" items="${requestScope.toppingList}">
-                            <option value="topping">${topping.toppingName}</option>
+                            <option value="${topping.toppingName}">${topping.toppingName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -39,7 +39,7 @@
                     <select class="form-select" name="bottom" aria-label=".form-select-lg example">
                         <option selected>Vælg bund</option>
                         <c:forEach var="bottom" items="${requestScope.bottomList}">
-                            <option value="bottom">${bottom.bottomName}</option>
+                            <option value="${bottom.bottomName}">${bottom.bottomName}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -48,7 +48,7 @@
                     <select class="form-select" name="quantity" aria-label=".form-select-lg example">
                         <option selected>Vælg antal</option>
                         <c:forEach begin="1" end="20" varStatus="loop">
-                            <option value="qty">${loop.index}</option>
+                            <option value="${loop.index}">${loop.index}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -56,9 +56,11 @@
                     <input type="submit" value="Tilføj til kurv"/>
                 </div>
             </div>
+
             Her->${requestScope.cakesInCart.size()}
             Her->${requestScope.topping}
             Her->${requestScope.bottom}
+            Her->${requestScope.quantity}
         </form>
 
     </jsp:body>
