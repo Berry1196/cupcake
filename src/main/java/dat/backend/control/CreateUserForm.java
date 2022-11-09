@@ -20,6 +20,8 @@ public class CreateUserForm extends HttpServlet {
 
     private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
