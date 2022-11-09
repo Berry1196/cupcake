@@ -42,8 +42,7 @@
             <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
 
         </c:forEach>
-        <div class="light-grey">
-            <div class="row">
+        <div class="row light-grey">
                 <div class="col-4 form-group inline ">
                     <select class="form-select" id="tops" aria-label=".form-select-lg example">
                         <option selected>Open this select menu</option>
@@ -63,13 +62,19 @@
                 <div class="col-2 form-group inline ">
                     <select class="form-select" id="quantity" aria-label=".form-select-lg example">
                         <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
+            <div class="text-end">
+            <a class="btn btn-primary col-3" href="index.jsp" role="button">Kurv</a>
             </div>
         </div>
+
+
 
 
     </jsp:body>
