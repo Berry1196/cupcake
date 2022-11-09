@@ -21,10 +21,24 @@
 
         <c:forEach var="cake" items="${requestScope.shoppingCart}">
 
-            <td> Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr</td><br>
+            <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
+
+                <form action="editcart" method="post">
+                    <label name="toppingName" value="${cake.topping.toppingName}" ></label>
+                    <label name="bottomName" value="${cake.bottom.bottomName}" ></label>
+                    <label name="quantity" value="${cake.quantity}" ></label>
+                    <label name="cakeIndex" value="${cake.cakeIndex}" ></label>
+
+                    <input type="submit" value="Rediger"/>
+                </form>
+
+            </td><br>
 
         </c:forEach>
         <br>
+
+        Ialt : ${requestScope.totalCartPrice}kr
+
 
 
 
