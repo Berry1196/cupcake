@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+         Velkommen ombord!
     </jsp:attribute>
 
 
@@ -15,66 +15,47 @@
 
     <jsp:body>
 
-
-        <p>You should be logged in now</p>
-
         <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
+            <p>Du er logget på som "${sessionScope.user.username}".</p>
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
+            <p>Du er ikke logget på. Dette kan du gøre her: <a
                     href="../login.jsp">Login</a></p>
         </c:if>
 
 
-        HER:
-        <c:forEach var="bottom" items="${requestScope.bottomList}">
-
-            <td> ${bottom.bottomId} - ${bottom.bottomName} - ${bottom.bottomPrice}</td>
-
-        </c:forEach>
-
-
-        HER:
-        <c:forEach var="topping" items="${requestScope.toppingList}">
-
-            <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
-
-        </c:forEach> //HER SKAL DER FIXES
         <form action="SKRIV HER" method="post">
-        <div class="row light-grey">
+            <div class="row light-grey">
                 <div class="col-4 form-group inline ">
                     <select class="form-select" id="tops" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>Vælg top</option>
+                        <c:forEach var="topping" items="${requestScope.toppingList}">
+                            <option value="topping">${topping.toppingName}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="col-4 form-group inline ">
                     <select class="form-select" id="bots" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>Vælg bund</option>
+                        <c:forEach var="bottom" items="${requestScope.bottomList}">
+                            <option value="bottom">${bottom.bottomName}</option>
+                        </c:forEach>
                     </select>
                 </div>
 
                 <div class="col-2 form-group inline ">
-                    <select class="form-select" id="quantity" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select class="form-select" id="qty" aria-label=".form-select-lg example">
+                        <option selected>Vælg antal</option>
+                        <c:forEach begin="1" end="20" varStatus="loop">
+                            <option value="qty">${loop.index}</option>
+                        </c:forEach>
                     </select>
                 </div>
-            <div class="text-end">
-                <input type="submit" value="Tilføj til kurv"/>
+                <div class="text-end">
+                    <input type="submit" value="Tilføj til kurv"/>
+                </div>
             </div>
-        </div>
         </form>
 
     </jsp:body>
