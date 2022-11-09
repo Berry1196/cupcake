@@ -9,18 +9,22 @@ public class ShoppingCart {
 
 
 
-    private int totalCartPrice = 500;
+    private int totalCartPrice = 0;
 
     public ShoppingCart() {
         this.cakesInCart = cakesInCart;
         this.totalCartPrice = totalCartPrice;
         insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
         insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
+        totalCartPrice = cakesInCart.get(0).getTotalCakePrice() + cakesInCart.get(1).getTotalCakePrice();
     }
+
 
     public ArrayList<Cake> insertCake(Cake cake) {
         cakesInCart.add(cake);
-        //totalCartPrice += cake.getCakePrice();
+
+        //remove comment once the program is complete
+        //totalCartPrice += cake.getTotalCakePrice();
         return cakesInCart;
     }
 
@@ -34,6 +38,9 @@ public class ShoppingCart {
     }
     public int getTotalCartPrice() {
         return totalCartPrice;
+    }
+    public int getCakeIndex(Cake cake) {
+        return cakesInCart.indexOf(cake);
     }
 
 }

@@ -20,16 +20,13 @@ public class ShoppingCartServlet extends HttpServlet {
     private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
     public    ShoppingCart shoppingCart = new ShoppingCart();
 
-    @Override
-    public void init() throws ServletException {
 
-        getServletContext().setAttribute("shoppingCart", shoppingCart.getCakesInCart());
-    }
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("shoppingCart", shoppingCart.getCakesInCart());
+        request.setAttribute("totalCartPrice", shoppingCart.getTotalCartPrice());
         request.getRequestDispatcher("kurv.jsp").forward(request, response);
     }
 

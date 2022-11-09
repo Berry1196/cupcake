@@ -21,11 +21,16 @@
 
         <c:forEach var="cake" items="${requestScope.shoppingCart}">
 
-            <td> Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr</td><br>
+            <td> Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
+                <button formaction="editcart" name="cake" value="${cake.getCakeIndex(cake)}">Rediger</button>
+                <button formaction="removeitemcart" name="cake" value="${cake}">Slet</button>
+
+            </td><br>
 
         </c:forEach>
         <br>
-        Ialt: ${requestScope.shoppingCart.totalCartPrice}kr<br>
+        Ialt : ${requestScope.totalCartPrice}kr
+
 
 
 
