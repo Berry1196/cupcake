@@ -12,6 +12,10 @@ public class Topping {
         this.toppingId = toppingId;
     }
 
+    public Topping(String toppingName) {
+        this.toppingName = toppingName;
+    }
+
     @Override
     public String toString() {
         return "Topping{" +

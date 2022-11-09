@@ -11,6 +11,10 @@ public class Bottom {
         this.bottomPrice = bottomPrice;
         this.bottomId = bottomId;
     }
+    public Bottom( String bottomName) {
+        this.bottomName = bottomName;
+
+    }
 
     @Override
     public String toString() {

@@ -7,12 +7,15 @@ public class User
     private String username;
     private String password;
     private String role;
+    private ShoppingCart shoppingCart;
 
     public User(String username, String password, String role)
     {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.shoppingCart = shoppingCart;
+
     }
 
     public String getUsername()

@@ -25,10 +25,10 @@
         </c:if>
 
 
-        <form action="SKRIV HER" method="post">
+        <form action="addCupcakes" method="post">
             <div class="row light-grey">
                 <div class="col-4 form-group inline ">
-                    <select class="form-select" id="tops" aria-label=".form-select-lg example">
+                    <select class="form-select" name="topping" aria-label=".form-select-lg example">
                         <option selected>Vælg top</option>
                         <c:forEach var="topping" items="${requestScope.toppingList}">
                             <option value="topping">${topping.toppingName}</option>
@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="col-4 form-group inline ">
-                    <select class="form-select" id="bots" aria-label=".form-select-lg example">
+                    <select class="form-select" name="bottom" aria-label=".form-select-lg example">
                         <option selected>Vælg bund</option>
                         <c:forEach var="bottom" items="${requestScope.bottomList}">
                             <option value="bottom">${bottom.bottomName}</option>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="col-2 form-group inline ">
-                    <select class="form-select" id="qty" aria-label=".form-select-lg example">
+                    <select class="form-select" name="quantity" aria-label=".form-select-lg example">
                         <option selected>Vælg antal</option>
                         <c:forEach begin="1" end="20" varStatus="loop">
                             <option value="qty">${loop.index}</option>
@@ -56,6 +56,9 @@
                     <input type="submit" value="Tilføj til kurv"/>
                 </div>
             </div>
+            Her->${requestScope.cakesInCart.size()}
+            Her->${requestScope.topping}
+            Her->${requestScope.bottom}
         </form>
 
     </jsp:body>
