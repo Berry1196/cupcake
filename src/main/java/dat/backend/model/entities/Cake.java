@@ -13,11 +13,13 @@ public class Cake {
 
 
     private int totalCakePrice;
+    private int cakeIndex;
 
     public Cake(Bottom bottom, Topping topping, int quantity) {
         this.bottom = bottom;
         this.topping = topping;
         this.quantity = quantity;
+        this.cakeIndex = cakeIndex;
         cakePrice = bottom.getBottomPrice() + topping.getTopppingPrice();
         totalCakePrice = (bottom.getBottomPrice() + topping.getTopppingPrice()) * quantity;
     }
@@ -51,5 +53,13 @@ public class Cake {
     }
     public int getTotalCakePrice() {
         return totalCakePrice;
+    }
+
+    public int getCakeIndex() {
+        return cakeIndex;
+    }
+
+    public void setCakeIndex(int cakeIndex) {
+        this.cakeIndex = cakeIndex;
     }
 }

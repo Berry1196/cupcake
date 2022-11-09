@@ -12,5 +12,8 @@
 </head>
 <body>
 
+
+Din kages index er : ${requestScope.cakeIndex}kr
+
 </body>
 </html>

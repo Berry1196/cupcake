@@ -13,8 +13,6 @@ import java.io.IOException;
 public class EditCart extends HttpServlet {
 
 
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,8 +20,18 @@ public class EditCart extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int cakeId = Integer.parseInt(request.getParameter("cake"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String bottomName = request.getParameter("bottomName");
+        String toppingName = request.getParameter("toppingName");
+        int cakeIndex = Integer.parseInt(request.getParameter("cakeIndex"));
 
-        request.getRequestDispatcher("/editCart.jsp").forward(request, response);
+        request.setAttribute("quantity", quantity);
+        request.setAttribute("bottomName", bottomName);
+        request.setAttribute("toppingName", toppingName);
+        request.setAttribute("cakeIndex", cakeIndex);
+
+        request.setAttribute("shoppingCart", shoppingCart.getCakesInCart().);
+
+        request.getRequestDispatcher("editCart.jsp").forward(request, response);
     }
 }
