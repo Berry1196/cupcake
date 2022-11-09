@@ -31,7 +31,7 @@
                     <select class="form-select" name="topping" aria-label=".form-select-lg example">
                         <option selected>Vælg top</option>
                         <c:forEach var="topping" items="${requestScope.toppingList}">
-                            <option value="${topping.toppingName}">${topping.toppingName}</option>
+                            <option value="${topping.toppingName}">${topping.toppingName} ${topping.topppingPrice}kr.</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -39,12 +39,12 @@
                     <select class="form-select" name="bottom" aria-label=".form-select-lg example">
                         <option selected>Vælg bund</option>
                         <c:forEach var="bottom" items="${requestScope.bottomList}">
-                            <option value="${bottom.bottomName}">${bottom.bottomName}</option>
+                            <option value="${bottom.bottomName} " >${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
                         </c:forEach>
                     </select>
                 </div>
 
-                <div class="col-2 form-group inline ">
+                <div class="col-2 form-group inline">
                     <select class="form-select" name="quantity" aria-label=".form-select-lg example">
                         <option selected>Vælg antal</option>
                         <c:forEach begin="1" end="20" varStatus="loop">
@@ -57,16 +57,13 @@
                 </div>
             </div>
 
-            <c:forEach var="cake" items="${requestScope.cakesInCart}">
-                Her->${requestScope.cakesInCart.size()}
-                Her->${requestScope.topping}
-                Her->${requestScope.bottom}
-                Her->${requestScope.quantity}
+
+            <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+                Top: ${cake.topping.toppingName} - Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
             </c:forEach>
 
+
         </form>
-
-
 
 
     </jsp:body>

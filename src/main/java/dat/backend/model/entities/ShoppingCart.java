@@ -7,16 +7,14 @@ public class ShoppingCart {
     private ArrayList<Cake> cakesInCart = new ArrayList<>();
 
 
-
-
     private int totalCartPrice = 0;
 
     public ShoppingCart() {
         this.cakesInCart = cakesInCart;
         this.totalCartPrice = totalCartPrice;
-        insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
+        // insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
 
-        insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
+        // insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
         //totalCartPrice = cakesInCart.get(0).getTotalCakePrice() + cakesInCart.get(1).getTotalCakePrice();
     }
 
@@ -26,6 +24,8 @@ public class ShoppingCart {
 
         int i = cakesInCart.indexOf(cake);
         cake.setCakeIndex(i);
+        cake.setCakePrice();
+        cake.setTotalCakePrice();
 
         totalCartPrice += cake.getTotalCakePrice();
 
@@ -40,6 +40,7 @@ public class ShoppingCart {
     public ArrayList<Cake> getCakesInCart() {
         return cakesInCart;
     }
+
     public int getTotalCartPrice() {
         return totalCartPrice;
     }

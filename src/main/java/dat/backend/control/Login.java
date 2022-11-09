@@ -51,12 +51,16 @@ public class Login extends HttpServlet
 
             List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
             request.setAttribute("bottomList", bottomList);
+
+            for (Bottom bottom : bottomList) {
+                request.setAttribute("bottom", bottom);
+            }
+
             List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
             request.setAttribute("toppingList", toppingList);
 
             ShoppingCart shoppingCart = new ShoppingCart();
-            ArrayList<Cake> cakesInCart = shoppingCart.getCakesInCart();
-            request.setAttribute("cakesInCart", cakesInCart);
+            session.setAttribute("shoppingCart", shoppingCart);
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 

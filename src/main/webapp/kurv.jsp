@@ -19,7 +19,7 @@
         <p>You should be logged in now</p>
 
 
-        <c:forEach var="cake" items="${requestScope.shoppingCart}">
+        <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
 
             <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
 
@@ -37,7 +37,7 @@
         </c:forEach>
         <br>
 
-        Ialt : ${requestScope.totalCartPrice}kr
+        Ialt : ${sessionScope.totalCartPrice}kr
 
 
 
