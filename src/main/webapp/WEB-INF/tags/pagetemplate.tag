@@ -31,7 +31,11 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/kurv.jsp">Kurv</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordre.jsp">Ordre</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/kunder.jsp">Kunder</a>
+
+                    <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/kunder.jsp">Kunder</a>
+                    </c:if>
+
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
