@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 
-    private ArrayList<Cake> cakesInCart;
+    private ArrayList<Cake> cakesInCart = new ArrayList<>();
 
     public ShoppingCart() {
+        this.cakesInCart = cakesInCart;
         insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
         insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
     }
@@ -21,4 +22,7 @@ public class ShoppingCart {
         return cakesInCart;
     }
 
+    public ArrayList<Cake> getCakesInCart() {
+        return cakesInCart;
+    }
 }

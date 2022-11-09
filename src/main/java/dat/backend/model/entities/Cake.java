@@ -11,4 +11,17 @@ public class Cake {
         this.topping = topping;
         this.quantity = quantity;
     }
+
+
+    public Bottom getBottom() {
+        return bottom;
+    }
+
+    public Topping getTopping() {
+        return topping;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

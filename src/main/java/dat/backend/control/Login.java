@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Bottom;
+import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.entities.Topping;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
@@ -54,6 +55,7 @@ public class Login extends HttpServlet
             request.setAttribute("bottomList", bottomList);
             List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
             request.setAttribute("toppingList", toppingList);
+
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 
         }

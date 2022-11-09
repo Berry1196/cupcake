@@ -70,11 +70,9 @@
                     </select>
                 </div>
             <div class="text-end">
-            <a class="btn btn-primary col-3" href="index.jsp" role="button">Kurv</a>
+            <a class="btn btn-primary col-3" href="welcome.jsp" role="button">Kurv</a>
             </div>
         </div>
-
-
 
 
     </jsp:body>

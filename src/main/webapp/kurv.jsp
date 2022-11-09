@@ -19,6 +19,17 @@
         <p>You should be logged in now</p>
 
 
+        <c:forEach var="cake" items="${requestScope.shoppingCart}">
+
+            <td> ${cake.topping} - ${cake.bottom} - ${cake.quantity}</td>
+
+        </c:forEach>
+
+
+
+
+
+
     </jsp:body>
 
 </t:pagetemplate>
