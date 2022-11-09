@@ -21,10 +21,11 @@
 
         <c:forEach var="cake" items="${requestScope.shoppingCart}">
 
-            <td> ${cake.topping} - ${cake.bottom} - ${cake.quantity}</td>
+            <td> Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr</td><br>
 
         </c:forEach>
-
+        <br>
+        Ialt: ${requestScope.shoppingCart.totalCartPrice}kr<br>
 
 
 
