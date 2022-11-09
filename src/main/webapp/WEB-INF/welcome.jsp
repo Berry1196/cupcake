@@ -41,7 +41,8 @@
 
             <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
 
-        </c:forEach>
+        </c:forEach> //HER SKAL DER FIXES
+        <form action="SKRIV HER" method="post">
         <div class="row light-grey">
                 <div class="col-4 form-group inline ">
                     <select class="form-select" id="tops" aria-label=".form-select-lg example">
@@ -59,6 +60,7 @@
                         <option value="3">Three</option>
                     </select>
                 </div>
+
                 <div class="col-2 form-group inline ">
                     <select class="form-select" id="quantity" aria-label=".form-select-lg example">
                         <option selected>Open this select menu</option>
@@ -70,10 +72,10 @@
                     </select>
                 </div>
             <div class="text-end">
-            <a class="btn btn-primary col-3" href="welcome.jsp" role="button">Kurv</a>
+                <input type="submit" value="Tilføj til kurv"/>
             </div>
         </div>
-
+        </form>
 
     </jsp:body>
 

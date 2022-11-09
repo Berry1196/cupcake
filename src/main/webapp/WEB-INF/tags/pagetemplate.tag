@@ -29,17 +29,19 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordre.jsp">Ordre</a>
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/kunder.jsp">Kunder</a>
                     </c:if>
 
+
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
+
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordre.jsp">Ordre</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     </c:if>
                 </div>
