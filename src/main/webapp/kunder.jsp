@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         kunder
+         Kunde ordre
     </jsp:attribute>
 
 
@@ -17,10 +17,6 @@
 
         <form method="post">
 
-            <div class="mb-4">
-                <input type="text" name="name" />
-                <button formaction="additem">Add item</button>
-            </div>
 
             <h3>Doing</h3>
             <table class="table table-striped">
@@ -43,7 +39,6 @@
                     </c:if>
                 </c:forEach>
             </table>
-
 
 
             <h3>Done</h3>
