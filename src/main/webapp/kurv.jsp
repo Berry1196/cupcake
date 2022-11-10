@@ -24,20 +24,26 @@
             <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr - Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
 
                 <form action="editcart" method="post">
-                    <label name="toppingName" value="${cake.topping.toppingName}" ></label>
-                    <label name="bottomName" value="${cake.bottom.bottomName}" ></label>
-                    <label name="quantity" value="${cake.quantity}" ></label>
-                    <label name="cakeIndex" value="${cake.cakeIndex}" ></label>
 
-                    <input type="submit" value="Rediger"/>
+                    <button name="cakeIndex" value="${cake.cakeIndex}">
+                        Edit
+                    </button>
+<%--&lt;%&ndash;                    <label name="toppingName" value="${cake.topping.toppingName}" ></label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <label name="bottomName" value="${cake.bottom.bottomName}" ></label>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <label name="quantity" value="${cake.quantity}" ></label>&ndash;%&gt;--%>
+<%--                    <label name="cakeIndex" value="${cake.cakeIndex}" ></label>--%>
+
+<%--                    <input type="submit" value="Rediger"/>--%>
                 </form>
+
+
 
             </td><br>
 
         </c:forEach>
         <br>
 
-        Ialt : ${sessionScope.totalCartPrice}kr
+        Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
 
 
 

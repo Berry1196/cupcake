@@ -27,14 +27,13 @@ public class ShoppingCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        session.getAttribute("cakePrice");
-        session.getAttribute("totalCakePrice");
-        session.getAttribute("totalCartPrice");
+//        session.getAttribute("cakePrice");
+//        session.getAttribute("totalCakePrice");
+//        session.getAttribute("totalCartPrice");
 
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-
         session.setAttribute("shoppingCart", shoppingCart);
-        //request.setAttribute("totalCartPrice", shoppingCart.getTotalCartPrice());
+//        request.setAttribute("totalCartPrice", shoppingCart.getTotalCartPrice());
         request.getRequestDispatcher("kurv.jsp").forward(request, response);
     }
 

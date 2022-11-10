@@ -13,7 +13,13 @@
 <body>
 
 
-Din kages index er : ${requestScope.cakeIndex}kr
+
+<%--Din kages index er : ${requestScope.cakeIndex}kr--%>
+<%--Din kage er : ${requestScope.cake}--%>
+<%--<br>--%>
+
+<td> ID: ${requestScope.cake.cakeIndex} - Antal: ${requestScope.cake.quantity}- Stk: ${requestScope.cake.cakePrice}kr - Topping: ${requestScope.cake.topping.toppingName} - Bottom: ${requestScope.cake.bottom.bottomName} - Total: ${requestScope.cake.totalCakePrice}kr
+
 
 </body>
 </html>

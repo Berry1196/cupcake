@@ -12,10 +12,9 @@ public class ShoppingCart {
     public ShoppingCart() {
         this.cakesInCart = cakesInCart;
         this.totalCartPrice = totalCartPrice;
-        // insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
+        insertCake(new Cake(new Bottom(1, "chocolate", 5), new Topping(9, "blue cheese", 9), 3));
+        insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
 
-        // insertCake(new Cake(new Bottom(2, "vanilla", 5), new Topping(9, "kiks", 14), 7));
-        //totalCartPrice = cakesInCart.get(0).getTotalCakePrice() + cakesInCart.get(1).getTotalCakePrice();
     }
 
 
@@ -44,6 +43,12 @@ public class ShoppingCart {
     public int getTotalCartPrice() {
         return totalCartPrice;
     }
+
+    public Cake getCakeByIndex(int cakeIndex){
+        return cakesInCart.get(cakeIndex);
+    }
+
+
 
 }
 
