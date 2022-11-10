@@ -27,7 +27,15 @@
                 <form action="editcart" method="post">
 
                     <button name="cakeIndex" value="${cake.cakeIndex}">
-                        Edit
+                        Rediger
+                    </button>
+
+                </form>
+
+                <form action="deletefromcart" method="post">
+
+                    <button name="cakeIndex" value="${cake.cakeIndex}">
+                        Slet
                     </button>
 
                 </form>
@@ -40,6 +48,16 @@
         <br>
 
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
+        <!-- Mangler servlet osv-->
+        <form action="ShoppingCar" method="post">
+
+        <button name="ShoppingCart" value="${sessionScope.ShoppingCart}">
+            Køb
+        </button>
+
+    </form>
+
+
 
 
     </jsp:body>

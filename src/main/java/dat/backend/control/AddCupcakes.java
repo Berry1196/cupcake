@@ -21,7 +21,6 @@ public class AddCupcakes extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
