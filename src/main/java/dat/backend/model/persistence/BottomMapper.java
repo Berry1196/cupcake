@@ -5,11 +5,14 @@ import dat.backend.model.entities.Bottom;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class BottomMapper {
 
-    public static List<Bottom> getBottoms(ConnectionPool connectionPool) {
-        List<Bottom> bottomList = new ArrayList<>();
+    public static Map<String , Bottom> getBottoms(ConnectionPool connectionPool) {
+        Map<String , Bottom> bottomMap = new TreeMap<>();
+        //List<Bottom> bottomList = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection()) {
 
             String sql = "SELECT * FROM bottom";
@@ -23,13 +26,14 @@ public class BottomMapper {
                     int bottomPrice = rs.getInt("bottom_price");
 
                     Bottom bottom = new Bottom(bottomId, bottomName, bottomPrice);
-                    bottomList.add(bottom);
+                    bottomMap.put(bottomName, bottom);
+                    //bottomList.add(bottom);
                 }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return bottomList;
+        return bottomMap;
     }
 
 }

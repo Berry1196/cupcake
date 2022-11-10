@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "BottomList", value = "/bottomList")
 public class BottomList extends HttpServlet {
@@ -18,8 +19,8 @@ public class BottomList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
-        request.setAttribute("bottomList", bottomList);
+        Map<String , Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
+        request.setAttribute("bottomMap", bottomMap);
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
     }
 

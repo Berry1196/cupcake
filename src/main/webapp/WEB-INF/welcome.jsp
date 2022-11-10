@@ -30,16 +30,16 @@
                 <div class="col-4 form-group inline ">
                     <select class="form-select" name="topping" aria-label=".form-select-lg example">
                         <option selected>Vælg top</option>
-                        <c:forEach var="topping" items="${requestScope.toppingList}">
-                            <option value="${topping.toppingName}">${topping.toppingName} ${topping.topppingPrice}kr.</option>
+                        <c:forEach var="topping" items="${requestScope.toppingMap.values()}">
+                            <option value="${topping.toppingName}"> ${topping.toppingName} ${topping.topppingPrice}kr. </option>
                         </c:forEach>
                     </select>
                 </div>
                 <div class="col-4 form-group inline ">
                     <select class="form-select" name="bottom" aria-label=".form-select-lg example">
                         <option selected>Vælg bund</option>
-                        <c:forEach var="bottom" items="${requestScope.bottomList}">
-                            <option value="${bottom.bottomName} " >${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
+                        <c:forEach var="bottom" items="${requestScope.bottomMap.values()}">
+                            <option value="${bottom.bottomName}" >${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -58,8 +58,12 @@
             </div>
 
 
+
+            DEN totale pris er: ${sessionScope.totalCartPrice}
+            <br>
+            <br>
             <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                Top: ${cake.topping.toppingName} - Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
+                Top: ${cake.topping.toppingName} -  Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
             </c:forEach>
 
 

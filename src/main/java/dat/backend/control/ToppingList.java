@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ToppingList", value = "/toppingList")
 public class ToppingList extends HttpServlet {
@@ -20,8 +21,8 @@ public class ToppingList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
-        request.setAttribute("toppingList", toppingList);
+        Map<String, Topping> toppingMap = ToppingFacade.getToppings(connectionPool);
+        request.setAttribute("toppingMap", toppingMap);
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
     }
 

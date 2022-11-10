@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "login", urlPatterns = {"/login"} )
 public class Login extends HttpServlet
@@ -49,15 +50,11 @@ public class Login extends HttpServlet
             session = request.getSession();
             session.setAttribute("user", user); // adding user object to session scope
 
-            List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
-            request.setAttribute("bottomList", bottomList);
+            Map<String, Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
+            request.setAttribute("bottomMap", bottomMap);
 
-            for (Bottom bottom : bottomList) {
-                request.setAttribute("bottom", bottom);
-            }
-
-            List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
-            request.setAttribute("toppingList", toppingList);
+            Map<String, Topping> toppingMap = ToppingFacade.getToppings(connectionPool);
+            request.setAttribute("toppingMap", toppingMap);
 
             ShoppingCart shoppingCart = new ShoppingCart();
             session.setAttribute("shoppingCart", shoppingCart);

@@ -13,6 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "AddCupcakes", value = "/addCupcakes")
 public class AddCupcakes extends HttpServlet {
@@ -34,32 +35,37 @@ public class AddCupcakes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        List<Bottom> bottomList = BottomFacade.getBottoms(connectionPool);
-        request.setAttribute("bottomList", bottomList);
+        Map<String, Topping> toppingMap = ToppingFacade.getToppings(connectionPool);
+        request.setAttribute("toppingMap", toppingMap);
+
+        Map<String , Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
+        request.setAttribute("bottomMap", bottomMap);
+
 
         String topping = request.getParameter("topping");
         String bottom = request.getParameter("bottom");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-
         //HER ER DER BALLADE
-        Cake cake = new Cake(new Bottom(bottom), new Topping(topping),quantity);
+        Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping),quantity);
+
+        //Cake cake = new Cake(bottomMap.get(bottomId), toppingMap.get(toppingId),quantity);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
         request.setAttribute("topping", topping);
         request.setAttribute("bottom", bottom);
         request.setAttribute("quantity", quantity);
+        session.setAttribute("totalCartPrice", (toppingMap.get(topping).getTopppingPrice()+bottomMap.get(bottom).getBottomPrice())*quantity);
 
         session.setAttribute("cakePrice", cake.getCakePrice());
         session.setAttribute("totalCakePrice", cake.getTotalCakePrice());
-        session.setAttribute("totalCartPrice", shoppingCart.getTotalCartPrice());
+
 
 
         ArrayList<Cake> cakesInCart = shoppingCart.insertCake(cake);
 
 
-        List<Topping> toppingList = ToppingFacade.getToppings(connectionPool);
-        request.setAttribute("toppingList", toppingList);
+
 
         session.setAttribute("cakesInCart", cakesInCart);
 
