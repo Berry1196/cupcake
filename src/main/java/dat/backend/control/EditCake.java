@@ -42,21 +42,12 @@ public class EditCake extends HttpServlet {
         int cakeIndex = Integer.parseInt(request.getParameter("cakeIndex"));
         request.setAttribute("cakeIndex", cakeIndex);
 
-        //HER ER DER BALLADE
+
         Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping),quantity);
 
-        //Cake cake = new Cake(bottomMap.get(bottomId), toppingMap.get(toppingId),quantity);
+
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         shoppingCart.updateCake(cakeIndex, cake);
-
-
-        /*request.setAttribute("topping", topping);
-        request.setAttribute("bottom", bottom);
-        request.setAttribute("quantity", quantity);
-        session.setAttribute("totalCartPrice", (toppingMap.get(topping).getTopppingPrice()+bottomMap.get(bottom).getBottomPrice())*quantity);
-
-        session.setAttribute("cakePrice", cake.getCakePrice());
-        session.setAttribute("totalCakePrice", cake.getTotalCakePrice());*/
 
 
 
