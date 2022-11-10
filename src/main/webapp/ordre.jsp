@@ -5,71 +5,33 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         ordre
-    </jsp:attribute>
-
-
-    <jsp:attribute name="footer">
-        Logged in area
+         Ordre
     </jsp:attribute>
 
     <jsp:body>
 
+        <p>Oversigt over ordre </p>
 
-        <p>You should be logged in now</p>
-
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
-
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="login.jsp">Login</a></p>
-        </c:if>
-
-
-        HER:
-        <c:forEach var="bottom" items="${requestScope.bottomList}">
-
-            <td> ${bottom.bottomId} - ${bottom.bottomName} - ${bottom.bottomPrice}</td>
-
-        </c:forEach>
-
-
-        HER:
-        <c:forEach var="topping" items="${requestScope.toppingList}">
-
-            <td> ${topping.toppingId} - ${topping.toppingName} - ${topping.topppingPrice}</td>
-
-        </c:forEach>
-        <div class="light-grey">
-            <div class="row">
-                <div class="col-4 form-group inline ">
-                    <select class="form-select" id="tops" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="col-4 form-group inline ">
-                    <select class="form-select" id="bots" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="col-2 form-group inline ">
-                    <select class="form-select" id="quantity" aria-label=".form-select-lg example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">Choko</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <c:forEach var="orderList" items="${requestScope.orderList}">
+                <tr>
+                    <td>
+                           <th> ${orderList.order_id} (${orderList.username}) </th>
+                    </td>
+                    <td>
+                        <button formaction="toggleitem" name="item_id" value="${orderList.order_id}">
+                            Done
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
 
 
     </jsp:body>

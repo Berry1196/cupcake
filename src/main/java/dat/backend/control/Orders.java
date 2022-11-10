@@ -16,12 +16,9 @@ public class Orders extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         List<Order> orderList = OrderFacade.getOrders(connectionPool);
         request.setAttribute("orderList",orderList);
-        request.setAttribute("hej","det virker");
         request.getRequestDispatcher("kunder.jsp").forward(request,response);
-        log("Størrelse af orderList" + (orderList.size()));
     }
 
     @Override

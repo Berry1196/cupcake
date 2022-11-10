@@ -14,4 +14,9 @@ public class UserFacade
     {
         return UserMapper.createUser(username, password, role, connectionPool);
     }
+
+    public static void updateBalance(String username, int balance, ConnectionPool connectionPool) {
+       UserMapper.updateBalance(username, balance, connectionPool);
+
+    }
 }

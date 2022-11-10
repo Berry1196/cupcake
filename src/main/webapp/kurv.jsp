@@ -16,9 +16,6 @@
     <jsp:body>
 
 
-        <p>You should be logged in now</p>
-
-
         <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
 
             <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr -
@@ -49,10 +46,10 @@
 
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
         <!-- Mangler servlet osv-->
-        <form action="ShoppingCar" method="post">
+        <form action="placeOrder" method="post">
 
         <button name="ShoppingCart" value="${sessionScope.ShoppingCart}">
-            Køb
+            Til kassen
         </button>
 
     </form>
