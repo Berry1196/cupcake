@@ -45,6 +45,31 @@ public class ShoppingCart {
     }
 
 
+    public void deleteCakeByIndex(int cakeIndex) {
+        totalCartPrice -= cakesInCart.get(cakeIndex).getTotalCakePrice();
+        cakesInCart.remove(cakeIndex);
+        indexUpdate();
+
+    }
+
+public void updateCake(int index, Cake cake){
+        totalCartPrice -= cakesInCart.get(index).getTotalCakePrice();
+        cakesInCart.set(index, cake);
+        totalCartPrice += cake.getTotalCakePrice();
+        indexUpdate();
+
+
+}
+
+public void indexUpdate(){
+    int index = 0;
+    for (Cake cake : cakesInCart) {
+        cake.setCakeIndex(index);
+        index ++;
+    }
+
+}
+
 }
 
 
