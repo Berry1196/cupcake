@@ -43,7 +43,7 @@ public class AddCupcakes extends HttpServlet {
 
 
         //HER ER DER BALLADE
-        Cake cake = new Cake(new Bottom(), new Topping(topping),quantity);
+        Cake cake = new Cake(new Bottom(bottom), new Topping(topping),quantity);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
         request.setAttribute("topping", topping);
