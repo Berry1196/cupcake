@@ -17,8 +17,8 @@
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
-            <p>Du er ikke logget på endnu. Dette kan du gøre her: <a
-                    href="login.jsp">Login</a></p>
+            <p>Du er ikke logget på endnu. Dette kan du gøre her:
+                <a href="login.jsp">Login</a></p>
         </c:if>
 
     </jsp:body>

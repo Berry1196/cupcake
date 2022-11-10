@@ -46,7 +46,6 @@
 
                 <div class="col-2 form-group inline">
                     <select class="form-select" name="quantity" aria-label=".form-select-lg example">
-                        <option selected>Vælg antal</option>
                         <c:forEach begin="1" end="20" varStatus="loop">
                             <option value="${loop.index}">${loop.index}</option>
                         </c:forEach>
@@ -54,9 +53,12 @@
                 </div>
                 <div class="text-end">
                     <input type="submit" value="Tilføj til kurv"/>
+                    <br>
+                    ${requestScope.besked}
                 </div>
             </div>
 
+            her: <a href=tankOp.jsp>Tank op</a>
 
 
             DEN totale pris er: ${sessionScope.totalCartPrice}

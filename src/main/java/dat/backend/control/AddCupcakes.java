@@ -34,37 +34,37 @@ public class AddCupcakes extends HttpServlet {
         Map<String, Topping> toppingMap = ToppingFacade.getToppings(connectionPool);
         request.setAttribute("toppingMap", toppingMap);
 
-        Map<String , Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
+        Map<String, Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
         request.setAttribute("bottomMap", bottomMap);
-
 
         String topping = request.getParameter("topping");
         String bottom = request.getParameter("bottom");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        //HER ER DER BALLADE
-        Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping),quantity);
+        try {
+            if(bottom != null || topping != null) {
+                ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping), quantity);
+                session.setAttribute("cakePrice", cake.getCakePrice());
+                session.setAttribute("totalCakePrice", cake.getTotalCakePrice());
+                ArrayList<Cake> cakesInCart = shoppingCart.insertCake(cake);
 
-        //Cake cake = new Cake(bottomMap.get(bottomId), toppingMap.get(toppingId),quantity);
-        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                session.setAttribute("cakesInCart", cakesInCart);
 
-        request.setAttribute("topping", topping);
-        request.setAttribute("bottom", bottom);
-        request.setAttribute("quantity", quantity);
-        session.setAttribute("totalCartPrice", (toppingMap.get(topping).getTopppingPrice()+bottomMap.get(bottom).getBottomPrice())*quantity);
+                request.setAttribute("topping", topping);
+                request.setAttribute("topping", topping);
+                request.setAttribute("bottom", bottom);
+                request.setAttribute("quantity", quantity);
+                session.setAttribute("totalCartPrice", (toppingMap.get(topping).getTopppingPrice() + bottomMap.get(bottom).getBottomPrice()) * quantity);
 
-        session.setAttribute("cakePrice", cake.getCakePrice());
-        session.setAttribute("totalCakePrice", cake.getTotalCakePrice());
+                request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+            }
+        } catch (NullPointerException e) {
+            String besked = "Husk at vælge både top og bund";
+            request.setAttribute("besked", besked);
+            request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+        }
 
 
-
-        ArrayList<Cake> cakesInCart = shoppingCart.insertCake(cake);
-
-
-
-
-        session.setAttribute("cakesInCart", cakesInCart);
-
-        request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
     }
 }

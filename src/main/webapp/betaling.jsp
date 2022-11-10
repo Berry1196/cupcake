@@ -24,14 +24,13 @@
         <br>
 
         Total beløb inkl. moms : ${sessionScope.shoppingCart.totalCartPrice}kr
+
         <form action="payment" method="post">
-            <button name="ShoppingCart" value="${sessionScope.ShoppingCart}">
+            <button>
                 Betal
             </button>
             <br>
-
-                ${requestScope.besked}  ${requestScope.link}
-
+                ${requestScope.besked} ${requestScope.link}
         </form>
 
 

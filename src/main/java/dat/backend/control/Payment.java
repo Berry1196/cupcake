@@ -21,7 +21,7 @@ public class Payment extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendRedirect("ordre.jsp");
     }
 
     @Override
@@ -41,14 +41,11 @@ public class Payment extends HttpServlet {
         } else {
             request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:  ");
 
-            request.setAttribute("link", "<a\n" +
-                    "                    href=\"tankOp.jsp\">Tank op</a>");
+            request.setAttribute("link", "<a href=tankOp.jsp>Tank op</a>");
 
             request.getRequestDispatcher("betaling.jsp").forward(request, response);
         }
 
-        session.setAttribute("shoppingCart", shoppingCart);
-        request.setAttribute("user", user);
         request.setAttribute("newBalance", newBalance);
 
         List<Order> orderList = OrderFacade.getOrders(connectionPool);

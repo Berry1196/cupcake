@@ -45,16 +45,11 @@
         <br>
 
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
-        <!-- Mangler servlet osv-->
-        <form action="placeOrder" method="post">
-
-        <button name="ShoppingCart" value="${sessionScope.ShoppingCart}">
-            Til kassen
-        </button>
-
-    </form>
 
 
+        <a href="betaling.jsp">
+            <button> Til kassen</button>
+        </a>
 
 
     </jsp:body>
