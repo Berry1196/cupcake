@@ -3,10 +3,7 @@ package dat.backend.control;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.*;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.BottomFacade;
-import dat.backend.model.persistence.ToppingFacade;
-import dat.backend.model.persistence.UserFacade;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +55,9 @@ public class Login extends HttpServlet
 
             ShoppingCart shoppingCart = new ShoppingCart();
             session.setAttribute("shoppingCart", shoppingCart);
+
+            List<Order> orderList = OrderFacade.getOrders(connectionPool);
+            request.setAttribute("orderList", orderList);
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 

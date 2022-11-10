@@ -19,11 +19,8 @@ import java.util.Map;
 public class AddCupcakes extends HttpServlet {
 
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
-    ArrayList<Cake> cakesInCart;
-    @Override
-    public void init() throws ServletException {
-        cakesInCart = new ArrayList<>();
-    }
+
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

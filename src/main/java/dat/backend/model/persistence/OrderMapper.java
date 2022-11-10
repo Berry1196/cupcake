@@ -7,11 +7,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class OrderMapper {
     static List<Order> getOrders(ConnectionPool connectionPool) {
         List<Order> orderList = new ArrayList<>();
 
-        String sql = "SELECT * FROM order";
+        String sql = "SELECT * FROM cupcake.order";
 
         try(Connection connection = connectionPool.getConnection()) {
 
@@ -24,6 +26,7 @@ public class OrderMapper {
 
                     Order newOrder = new Order(id,name,date);
                     orderList.add(newOrder);
+
                 }
 
             } catch (SQLException e) {

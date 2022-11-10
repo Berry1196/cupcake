@@ -31,7 +31,7 @@
                 <div class="navbar-nav">
 
                     <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/kunder.jsp">Kunder</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orders">Kunder</a>
                     </c:if>
 
                     <c:if test="${sessionScope.user == null }">
