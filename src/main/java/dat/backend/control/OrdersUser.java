@@ -20,17 +20,16 @@ public class OrdersUser extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        List<Order> orderListUser = OrderFacade.getOrderListByUsername(user.getUsername(), connectionPool);
+        request.setAttribute("orderListUser",orderListUser);
+        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
 
-        List<Order> orderList = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
-        request.setAttribute("orderList",orderList);
-        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request,response);
     }
 
 

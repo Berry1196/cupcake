@@ -9,10 +9,13 @@ public class OrderFacade {
         return OrderMapper.getOrders(connectionPool);
     }
 
-    public  static List<Order> getOrderByUsername(String username, ConnectionPool connectionPool) {
-        return OrderMapper.getOrderByUsername(username, connectionPool);
+    public  static List<Order> getOrderListByUsername(String username, ConnectionPool connectionPool) {
+        return OrderMapper.getOrderListByUsername(username, connectionPool);
     }
 
+    public  static Order getOrderByUsername(String username, ConnectionPool connectionPool) {
+        return OrderMapper.getOrderByUsername(username, connectionPool);
+    }
     public static void saveOrder(String username, ConnectionPool connectionPool) {
         OrderMapper.saveOrder(username, connectionPool);
     }

@@ -40,8 +40,9 @@ public class Payment extends HttpServlet {
             UserFacade.updateBalance(user.getUsername(), newBalance, connectionPool);
 
             OrderFacade.saveOrder(user.getUsername(), connectionPool);
-            List<Order> orderListUser = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
-            session.setAttribute("orderListUser", orderListUser);
+            Order order = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
+            session.setAttribute("order",order);
+
         } else {
             request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:  ");
 
@@ -50,6 +51,12 @@ public class Payment extends HttpServlet {
 
         request.setAttribute("newBalance", newBalance);
 
-        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/kvittering.jsp").forward(request, response);
     }
+
+
+
+
+
+
 }

@@ -25,6 +25,7 @@ public class Login extends HttpServlet
     public void init() throws ServletException
     {
         this.connectionPool = ApplicationStart.getConnectionPool();
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
@@ -59,7 +60,12 @@ public class Login extends HttpServlet
             List<Order> orderList = OrderFacade.getOrders(connectionPool);
             request.setAttribute("orderList", orderList);
 
+            List<Order> orderListUser = OrderFacade.getOrderListByUsername(user.getUsername(), connectionPool);
+            request.setAttribute("orderListUser",orderListUser);
+
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+
+
 
         }
         catch (DatabaseException e)

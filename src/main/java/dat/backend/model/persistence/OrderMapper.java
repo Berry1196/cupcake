@@ -38,16 +38,16 @@ public class OrderMapper {
     }
 
 
-    static List<Order> getOrderByUsername(String username, ConnectionPool connectionPool) {
+    static List<Order> getOrderListByUsername(String username, ConnectionPool connectionPool) {
         List<Order> orderList = new ArrayList<>();
 
-        String sql = "select * from cupcake.order where username = ?;";
+        String sql = "select * from cupcake.order where username = ?";
 
         try(Connection connection = connectionPool.getConnection()) {
 
             try(PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
                 ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
                     int order_id = rs.getInt("order_id");
                     String name = rs.getString("username");
@@ -67,20 +67,55 @@ public class OrderMapper {
         return orderList;
     }
 
+    static Order getOrderByUsername(String username, ConnectionPool connectionPool) {
 
-    public static void saveOrder(String username, ConnectionPool connectionPool) {
-        String sql = "insert into cupcake.order (username) values (?);";
+        String sql = "select * from cupcake.order where username = ? order by order_id desc";
+
+        try(Connection connection = connectionPool.getConnection()) {
+
+            try(PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()) {
+                    int order_id = rs.getInt("order_id");
+                    String name = rs.getString("username");
+                    Timestamp date = rs.getTimestamp("date");
+                    Boolean done = rs.getBoolean("done");
+
+                    Order newOrder = new Order(order_id, name, date, done);
+                    return newOrder;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static List<Order> saveOrder(String username, ConnectionPool connectionPool) {
+
+        String sql = "insert into cupcake.order (username) values (?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, username);
                 ps.executeUpdate();
+
+                List<Order> orderList = getOrderListByUsername(username, connectionPool);
+                return orderList;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
 

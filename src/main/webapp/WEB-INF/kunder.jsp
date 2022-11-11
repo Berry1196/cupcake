@@ -26,6 +26,7 @@
                 </tr>
                 </thead>
                 <c:forEach var="orderList" items="${requestScope.orderList}">
+                    <c:if test="${orderList.done == false}">
                         <tr>
                             <td>
                                     ${orderList.order_id} (${orderList.username})
@@ -36,6 +37,7 @@
                                 </button>
                             </td>
                         </tr>
+                    </c:if>
                 </c:forEach>
             </table>
 
@@ -47,7 +49,9 @@
                 <th>Action</th>
             </tr>
             </thead>
+
             <c:forEach var="orderList" items="${requestScope.orderList}">
+                <c:if test="${orderList.done == true}">
                 <tr>
                     <td>
                             ${orderList.order_id} (${orderList.username})
@@ -58,6 +62,7 @@
                         </button>
                     </td>
                 </tr>
+                </c:if>
             </c:forEach>
         </table>
 

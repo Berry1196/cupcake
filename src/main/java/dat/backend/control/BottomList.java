@@ -4,6 +4,7 @@ import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Bottom;
 import dat.backend.model.persistence.BottomFacade;
 import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.OrderFacade;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,6 +23,10 @@ public class BottomList extends HttpServlet {
         Map<String , Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
         request.setAttribute("bottomMap", bottomMap);
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+
+
+
+
     }
 
     @Override

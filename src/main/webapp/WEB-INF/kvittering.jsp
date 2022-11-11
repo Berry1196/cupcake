@@ -5,12 +5,10 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Ordre
+         Kvittering
     </jsp:attribute>
 
     <jsp:body>
-
-        <p>Oversigt over ordre </p>
 
         <table class="table table-striped">
             <thead>
@@ -21,14 +19,12 @@
             </thead>
 
 
+            <td>
+            <th> Ordre Id: ${sessionScope.order.order_id} - Kunde: ${sessionScope.order.username} - Dato: ${sessionScope.order.date} - Status: ${sessionScope.order.done}
+                -
+            </th>
+            </td>
 
-            <c:forEach var="order" items="${requestScope.orderListUser}">
-                <tr>
-                    <td>
-                           <th> Ordre Id: ${order.order_id} - Kunde: ${order.username} -  Dato: ${order.date} - Status: ${order.done} - </th>
-                    </td>
-                </tr>
-            </c:forEach>
         </table>
 
 
