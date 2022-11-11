@@ -6,11 +6,13 @@ public class Order {
     private int order_id;
     private String username;
     private Timestamp date;
+    private Boolean done;
 
-    public Order(int order_id, String username, Timestamp date) {
+    public Order(int order_id, String username, Timestamp date, Boolean done) {
         this.order_id = order_id;
         this.username = username;
         this.date = date;
+        this.done = done;
     }
 
     public int getOrder_id() {
@@ -23,6 +25,11 @@ public class Order {
 
     public Timestamp getDate() {
         return date;
+    }
+
+
+    public Boolean getDone() {
+        return done;
     }
 }
 

@@ -38,18 +38,17 @@ public class Payment extends HttpServlet {
         if(userBalance > totalCartPrice) {
             user.setBalance(newBalance);
             UserFacade.updateBalance(user.getUsername(), newBalance, connectionPool);
+
+            OrderFacade.saveOrder(user.getUsername(), connectionPool);
+            List<Order> orderListUser = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
+            session.setAttribute("orderListUser", orderListUser);
         } else {
             request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:  ");
-
-            request.setAttribute("link", "<a href=WEB-INF/tankOp.jsp>Tank op</a>");
 
             request.getRequestDispatcher("WEB-INF/betaling.jsp").forward(request, response);
         }
 
         request.setAttribute("newBalance", newBalance);
-
-        List<Order> orderList = OrderFacade.getOrders(connectionPool);
-        request.setAttribute("orderList", orderList);
 
         request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request, response);
     }

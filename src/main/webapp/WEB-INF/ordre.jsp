@@ -19,15 +19,15 @@
                 <th>Action</th>
             </tr>
             </thead>
+
+
+
+
+
             <c:forEach var="orderList" items="${requestScope.orderList}">
                 <tr>
                     <td>
-                           <th> ${orderList.order_id} (${orderList.username}) </th>
-                    </td>
-                    <td>
-                        <button formaction="toggleitem" name="item_id" value="${orderList.order_id}">
-                            Done
-                        </button>
+                           <th> Ordre Id: ${orderList.order_id} - Kunde: ${orderList.username} -  Dato: ${orderList.date} - Status: ${orderList.done} - </th>
                     </td>
                 </tr>
             </c:forEach>

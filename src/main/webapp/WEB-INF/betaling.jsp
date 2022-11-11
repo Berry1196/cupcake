@@ -30,8 +30,10 @@
                 Betal
             </button>
             <br>
-                ${requestScope.besked} ${requestScope.link}
         </form>
+        <c:if test="${sessionScope.user.balance < sessionScope.shoppingCart.totalCartPrice}">
+            ${requestScope.besked}
+        </c:if>
 
 
     </jsp:body>
