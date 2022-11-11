@@ -41,7 +41,7 @@
                     <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
 
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/WEB-INF/ordre.jsp">Ordre</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/toorders">Ordre</a>
                     </c:if>
 
                     <c:if test="${sessionScope.user != null}">

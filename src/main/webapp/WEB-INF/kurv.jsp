@@ -47,9 +47,13 @@
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
 
 
-        <a href="WEB-INF/betaling.jsp">
-            <button> Til kassen</button>
-        </a>
+        <form action="topayment" method="post">
+            <button>
+                Til kassen
+            </button>
+            <br>
+
+        </form>
 
 
     </jsp:body>
