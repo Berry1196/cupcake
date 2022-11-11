@@ -47,7 +47,7 @@
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
 
 
-        <a href="betaling.jsp">
+        <a href="WEB-INF/betaling.jsp">
             <button> Til kassen</button>
         </a>
 
