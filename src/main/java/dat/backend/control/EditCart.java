@@ -48,6 +48,6 @@ public class EditCart extends HttpServlet {
         request.setAttribute("cakeIndex", cakeIndex);
         Cake cake = shoppingCart.getCakeByIndex(cakeIndex);
         request.setAttribute("cake", cake);
-        request.getRequestDispatcher("editCart.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/editCart.jsp").forward(request, response);
     }
 }

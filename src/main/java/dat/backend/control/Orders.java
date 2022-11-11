@@ -18,7 +18,7 @@ public class Orders extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Order> orderList = OrderFacade.getOrders(connectionPool);
         request.setAttribute("orderList",orderList);
-        request.getRequestDispatcher("kunder.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request,response);
     }
 
     @Override

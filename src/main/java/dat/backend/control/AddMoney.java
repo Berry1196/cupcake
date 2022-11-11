@@ -42,6 +42,6 @@ public class AddMoney extends HttpServlet {
         UserFacade.updateBalance(user.getUsername(), newBalance, connectionPool);
 
         request.setAttribute("besked", "Du har nu tanket op  ");
-        request.getRequestDispatcher("tankOp.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/tankOp.jsp").forward(request, response);
     }
 }

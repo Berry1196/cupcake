@@ -58,8 +58,6 @@
                 </div>
             </div>
 
-            her: <a href=tankOp.jsp>Tank op</a>
-
 
             DEN totale pris er: ${sessionScope.totalCartPrice}
             <br>

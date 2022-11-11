@@ -27,7 +27,7 @@ public class ShoppingCartServlet extends HttpServlet {
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         session.setAttribute("shoppingCart", shoppingCart);
 
-        request.getRequestDispatcher("kurv.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/kurv.jsp").forward(request, response);
     }
 
     @Override

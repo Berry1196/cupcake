@@ -25,7 +25,7 @@ public class DeleteFromCart extends HttpServlet {
 
         shoppingCart.deleteCakeByIndex(cakeIndex);
 
-        request.getRequestDispatcher("kurv.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/kurv.jsp").forward(request, response);
 
     }
 }

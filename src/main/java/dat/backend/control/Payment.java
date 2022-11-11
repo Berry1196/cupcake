@@ -21,7 +21,7 @@ public class Payment extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("ordre.jsp");
+        response.sendRedirect("WEB-INF/ordre.jsp");
     }
 
     @Override
@@ -41,9 +41,9 @@ public class Payment extends HttpServlet {
         } else {
             request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:  ");
 
-            request.setAttribute("link", "<a href=tankOp.jsp>Tank op</a>");
+            request.setAttribute("link", "<a href=WEB-INF/tankOp.jsp>Tank op</a>");
 
-            request.getRequestDispatcher("betaling.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/betaling.jsp").forward(request, response);
         }
 
         request.setAttribute("newBalance", newBalance);
@@ -51,6 +51,6 @@ public class Payment extends HttpServlet {
         List<Order> orderList = OrderFacade.getOrders(connectionPool);
         request.setAttribute("orderList", orderList);
 
-        request.getRequestDispatcher("ordre.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request, response);
     }
 }

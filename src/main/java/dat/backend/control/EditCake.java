@@ -51,7 +51,7 @@ public class EditCake extends HttpServlet {
 
 
 
-        request.getRequestDispatcher("kurv.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/kurv.jsp").forward(request, response);
 
     }
 }
