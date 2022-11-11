@@ -10,7 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><jsp:invoke fragment="header"/></title>
+    <title>
+        <jsp:invoke fragment="header"/>
+    </title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,45 +20,54 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+    <div class="container">
+        <div class="row">
             <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="600px;" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
+                     class="img-fluid center-block"/>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
 
-                    <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orders">Kunder</a>
-                    </c:if>
+                <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orders">Kunder</a>
+                </c:if>
 
-                    <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
-                    </c:if>
+                <c:if test="${sessionScope.user == null }">
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                </c:if>
 
-                    <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
+                <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
 
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/toUserOrder">Ordre</a>
-                    </c:if>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/toUserOrder">Ordre</a>
+                </c:if>
 
-                    <c:if test="${sessionScope.user != null}">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
-                        <a class="nav-item nav-link" >Brugernavn: ${sessionScope.user.username}</a>
-                        <a class="nav-item nav-link" >Saldo: ${sessionScope.user.balance}</a>
-                    </c:if>
-                </div>
+                <c:if test="${sessionScope.user != null}">
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                    <a class="nav-item nav-link">Brugernavn: ${sessionScope.user.username}</a>
+                    <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance}</a>
+
+                </c:if>
             </div>
         </div>
-    </nav>
-</header>
+    </div>
+</nav>
+
 
 <div id="body" class="container mt-4" style="min-height: 400px;">
-    <h1><jsp:invoke fragment="header"/></h1>
+    <h1>
+        <jsp:invoke fragment="header"/>
+    </h1>
     <jsp:doBody/>
 </div>
 
@@ -69,7 +80,8 @@
             2800 Lyngby
         </div>
         <div class="col">
-            <jsp:invoke fragment="footer"/><br/>
+            <jsp:invoke fragment="footer"/>
+            <br/>
             <p>&copy; 2022 Cphbusiness</p>
         </div>
         <div class="col">

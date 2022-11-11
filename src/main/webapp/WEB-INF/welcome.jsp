@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Velkommen ombord!
+
     </jsp:attribute>
 
 
@@ -15,59 +15,61 @@
 
     <jsp:body>
 
-        <c:if test="${sessionScope.user != null}">
+        <%--<c:if test="${sessionScope.user != null}">
             <p>Du er logget på som "${sessionScope.user.username}".</p>
         </c:if>
-
+--%>
         <c:if test="${sessionScope.user == null}">
             <p>Du er ikke logget på. Dette kan du gøre her: <a
                     href="../login.jsp">Login</a></p>
         </c:if>
 
-
         <form action="addCupcakes" method="post">
-            <div class="row light-grey">
-                <div class="col-4 form-group inline ">
-                    <select class="form-select" name="topping" aria-label=".form-select-lg example">
+            <div class="container light-grey ">
+
+                <h1>Velkommen ombord!</h1>
+                <div class="h">Øens bedste cupcakes. Vælg og bestil her:</div>
+            <div class="row">
+                <div class="col  form-group  m-5 ">
+                    <select class="form-select" name="topping">
                         <option selected>Vælg top</option>
                         <c:forEach var="topping" items="${requestScope.toppingMap.values()}">
-                            <option value="${topping.toppingName}"> ${topping.toppingName} ${topping.topppingPrice}kr. </option>
+                            <option value="${topping.toppingName}"> ${topping.toppingName} ${topping.topppingPrice}kr.</option>
                         </c:forEach>
                     </select>
                 </div>
-                <div class="col-4 form-group inline ">
-                    <select class="form-select" name="bottom" aria-label=".form-select-lg example">
+                <div class="col form-group  m-5 ">
+                    <select class="form-select" name="bottom">
                         <option selected>Vælg bund</option>
                         <c:forEach var="bottom" items="${requestScope.bottomMap.values()}">
-                            <option value="${bottom.bottomName}" >${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
+                            <option value="${bottom.bottomName}">${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
                         </c:forEach>
                     </select>
                 </div>
 
-                <div class="col-2 form-group inline">
-                    <select class="form-select" name="quantity" aria-label=".form-select-lg example">
+                <div class="col-2 form-group m-5">
+                    <select class="form-select" name="quantity">
                         <c:forEach begin="1" end="20" varStatus="loop">
                             <option value="${loop.index}">${loop.index}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <div class="text-end">
-                    <input type="submit" value="Tilføj til kurv"/>
-                    <br>
-                    ${requestScope.besked}
+                <div class="row">
+                    <div class="col-3 text-end">
+                    <button type="submit" value="Tilføj til kurv" class="btn btn-primary mt-2 fs-5 ">Tilføj til kurv</button>
+                    </div>
                 </div>
             </div>
-
+                    ${requestScope.besked}
 
             DEN totale pris er: ${sessionScope.totalCartPrice}
             <br>
             <br>
             <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                Top: ${cake.topping.toppingName} -  Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
+                Top: ${cake.topping.toppingName} - Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
             </c:forEach>
 
-
-
+            </div>
         </form>
 
 
