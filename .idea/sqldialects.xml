@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/cupcake-script.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/startcode.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tinyint-update.sql" dialect="MySQL" />
   </component>
 </project>
