@@ -13,8 +13,11 @@ import dat.backend.model.persistence.UserFacade;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.beans.IntrospectionException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "Payment", value = "/payment")
 public class Payment extends HttpServlet {
@@ -31,6 +34,7 @@ public class Payment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
@@ -38,7 +42,6 @@ public class Payment extends HttpServlet {
         int userBalance = user.getBalance();
         int totalCartPrice = shoppingCart.getTotalCartPrice();
         int newBalance = userBalance - totalCartPrice;
-        //int cakeIndex = (int) request.getAttribute("cakeIndex");
 
         if(userBalance > totalCartPrice) {
             user.setBalance(newBalance);
@@ -47,14 +50,16 @@ public class Payment extends HttpServlet {
             OrderFacade.saveOrder(user.getUsername(), connectionPool);
             Order order = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
 
-            int cakeSize = shoppingCart.getCakesInCart().size();
-            request.setAttribute("cakeSize", cakeSize);
-           // OrderFacade.saveOrderToOrdernline(order.getOrder_id(), shoppingCart.getCakeByIndex(cakeIndex), connectionPool);
+            for (Cake cake : shoppingCart.getCakesInCart()) {
+                 OrderFacade.saveOrderToOrdernline(order.getOrder_id(), new Cake(cake.getBottom(), cake.getTopping(), cake.getQuantity()), connectionPool);
+                session.setAttribute("cakeIndex", cake.getCakeIndex());
+                session.setAttribute("cake", cake);
+            }
 
-            session.setAttribute("order",order);
+            session.setAttribute("order", order);
 
         } else {
-            request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:  ");
+            request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:");
 
             request.getRequestDispatcher("WEB-INF/betaling.jsp").forward(request, response);
         }
@@ -63,10 +68,6 @@ public class Payment extends HttpServlet {
 
         request.getRequestDispatcher("WEB-INF/kvittering.jsp").forward(request, response);
     }
-
-
-
-
 
 
 }

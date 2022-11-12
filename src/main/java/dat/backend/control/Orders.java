@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,19 +21,17 @@ public class Orders extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        List<Order> orderList = OrderFacade.getOrders(connectionPool);
-        request.setAttribute("orderList",orderList);
-//        request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request,response);
-
-
+        List<Order> orderIds = new ArrayList<>();
         Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
-        log("her kommer admin listen: " + adminOrderList.size());
+
+        for (Order order: adminOrderList.values())
+        {
+            orderIds.add(order);
+        }
         request.setAttribute("adminOrderList",adminOrderList);
+        request.setAttribute("orderIds", orderIds);
+
         request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request,response);
-
-
-
 
     }
 

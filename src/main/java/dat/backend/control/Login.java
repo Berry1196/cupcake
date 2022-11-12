@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,15 +61,13 @@ public class Login extends HttpServlet
             List<Order> orderList = OrderFacade.getOrders(connectionPool);
             request.setAttribute("orderList", orderList);
 
-            List<Order> orderListUser = OrderFacade.getOrderListByUsername(user.getUsername(), connectionPool);
+            Map<ShoppingCart, Order> orderListUser = OrderFacade.getOrderListUser(user.getUsername(), connectionPool);
             request.setAttribute("orderListUser",orderListUser);
 
-            Map<ShoppingCart, Order> orderListAdmin = OrderFacade.getOrderListForAdmin(connectionPool);
-            request.setAttribute("orderListAdmin",orderListAdmin);
+            Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
+            request.setAttribute("adminOrderList",adminOrderList);
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-
-
 
         }
         catch (DatabaseException e)

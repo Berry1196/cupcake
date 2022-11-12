@@ -18,6 +18,10 @@ public class OrderFacade {
         return OrderMapper.getOrderListByUsername(username, connectionPool);
     }
 
+    public static Map<ShoppingCart, Order> getOrderListUser(String username, ConnectionPool connectionPool) {
+        return OrderMapper.getOrderListUser(username, connectionPool);
+    }
+
     public static Order getOrderByUsername(String username, ConnectionPool connectionPool) {
         return OrderMapper.getOrderByUsername(username, connectionPool);
     }
@@ -37,4 +41,10 @@ public class OrderFacade {
     public static void toggleItem(int order_id, ConnectionPool connectionPool) {
         OrderMapper.toggleItem(order_id, connectionPool);
     }
+
+    public static Map<ShoppingCart, Order> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
+        return OrderMapper.getOrderListForAdminByOrderId(order_id, connectionPool);
+    }
+
+
 }

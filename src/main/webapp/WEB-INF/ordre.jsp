@@ -12,20 +12,41 @@
 
         <p>Oversigt over ordre </p>
 
+        <h3>Behandles</h3>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Item</th>
-                <th>Action</th>
+                <th>Ordre ID</th>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Dato</th>
+                <th>Total Pris</th>
+                <th>Status</th>
             </tr>
             </thead>
 
-
-
+                <%--                            Map(shoppingcart, ordet)--%>
             <c:forEach var="order" items="${requestScope.orderListUser}">
                 <tr>
                     <td>
-                           <th> Ordre Id: ${order.order_id} - Kunde: ${order.username} -  Dato: ${order.date} - Status: ${order.done} - </th>
+                            ${order.value.order_id}
+                    </td>
+                    <td>
+                            ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}
+                        - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake
+                    </td>
+                    <td>
+                            ${order.key.cakesInCart.get(cakeIndex).quantity}
+                    </td>
+                    <td>
+                            ${order.value.date}
+                    </td>
+                    <td>
+                            ${order.key.totalCartPrice} kr.
+                    </td>
+                    <td>
+                            ${order.value.done}
                     </td>
                 </tr>
             </c:forEach>

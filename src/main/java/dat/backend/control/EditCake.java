@@ -44,6 +44,7 @@ public class EditCake extends HttpServlet {
 
 
         Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping),quantity);
+        session.setAttribute("theCake", cake);
 
 
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");

@@ -16,7 +16,61 @@
         <br>
 
         <form method="post">
-        <h3>Behandles</h3>
+            <h3>Behandles</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Ordre ID</th>
+                    <th>Kunde</th>
+                    <th>Cupcake</th>
+                    <th>Antal</th>
+                    <th>Dato</th>
+                    <th>Total Pris</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+
+                    <%--                            Map(shoppingcart, ordet)--%>
+                <c:forEach var="order" items="${requestScope.adminOrderList}">
+                    <c:if test="${order.value.done == false}">
+                        <tr>
+                            <td>
+                                    ${order.value.order_id}
+                            </td>
+                            <td>
+                                    ${order.value.username}
+                            </td>
+                            <td>
+
+                                    ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}
+                                - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake
+
+                            </td>
+                            <td>
+                                    ${order.key.cakesInCart.get(cakeIndex).quantity}
+                            </td>
+                            <td>
+                                    ${order.value.date}
+
+                            </td>
+                            <td>
+                                    ${order.key.totalCartPrice} kr.
+
+                            </td>
+                            <td>
+
+                                <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
+                                    Klar til udlevering
+                                </button>
+                            </td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </table>
+
+        </form>
+
+        <h3>Klar til udlevering</h3>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -30,99 +84,41 @@
             </tr>
             </thead>
 
+            <form method="post">
+                <c:forEach var="order" items="${requestScope.adminOrderList}">
+                <c:if test="${order.value.done == true}">
+                <tr>
+                    <td>
+                            ${order.value.order_id}
+                    </td>
+                    <td>
+                            ${order.value.username}
+                    </td>
+                    <td>
+                        ${sessionScope.cakeIndex} ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName}
+                    </td>
+                    <td>
+                            ${order.key.cakesInCart.get(cakeIndex).quantity}
+                    </td>
+                    <td>
+                            ${order.value.date}
 
-                <%--                            Map(shoppingcart, ordet)--%>
-            <c:forEach var="order" items="${requestScope.adminOrderList}">
-                <c:if test="${order.value.done == false}">
-                    <tr>
-                        <td>
-                                ${order.value.order_id}
-                        </td>
-                        <td>
-                                ${order.value.username}
-                        </td>
-                        <td>
-                               bund + top
-                        </td>
-                        <td>
-                               antal stk
-                        </td>
-                        <td>
-                                ${order.value.date}
+                    </td>
+                    <td>
+                            ${order.key.totalCartPrice} kr.
 
-                        </td>
-                        <td>
-                                ${order.key.totalCartPrice} kr.
-
-                        </td>
-                        <td>
+                    </td>
+                    <td>
 
                         <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
-                            Done
+                            Fortryd
                         </button>
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 </c:if>
-            </c:forEach>
+                </c:forEach>
         </table>
-
-
-
-
-
-
-                <h3>Klar til udlevering</h3>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Ordre ID</th>
-                        <th>Kunde</th>
-                        <th>Cupcake</th>
-                        <th>Antal</th>
-                        <th>Dato</th>
-                        <th>Total Pris</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-
-                    <c:forEach var="order" items="${requestScope.adminOrderList}">
-                        <c:if test="${order.value.done == true}">
-                            <tr>
-                                <td>
-                                        ${order.value.order_id}
-                                </td>
-                                <td>
-                                        ${order.value.username}
-                                </td>
-                                <td>
-                                    bund + top
-                                </td>
-                                <td>
-                                    antal stk
-                                </td>
-                                <td>
-                                        ${order.value.date}
-
-                                </td>
-                                <td>
-                                        ${order.key.totalCartPrice} kr.
-
-                                </td>
-                                <td>
-
-                                    <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
-                                        Undo
-                                    </button>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
-                </table>
-
-
-
-
-        </table>
+        </form>
 
 
     </jsp:body>

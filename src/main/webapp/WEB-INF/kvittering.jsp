@@ -9,26 +9,46 @@
     </jsp:attribute>
 
     <jsp:body>
-
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Item</th>
-                <th>Action</th>
+                <th>Ordre ID</th>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Dato</th>
+                <th>Total Pris</th>
+                <th>Status</th>
             </tr>
             </thead>
 
-            her: ${requestScope.cakeSize}
+            <tr>
+                <td>
+<%--                    ${sessionScope.order.order_id}--%>
+                    ${sessionScope.order.order_id}
+                </td>
+                <td>
+                    <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+                            ${cake.topping.toppingName} -  ${cake.bottom.bottomName} cupcake <br>
+                    </c:forEach>
 
+                </td>
+                <td>
+                    <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+                        ${cake.quantity} <br>
+                    </c:forEach>
 
-            <td>
-            <th> Ordre Id: ${sessionScope.order.order_id} - Kunde: ${sessionScope.order.username} - Dato: ${sessionScope.order.date} - Status: ${sessionScope.order.done}
-                -
-            </th>
-            </td>
-
+                </td>
+                <td>
+                        ${sessionScope.order.date}
+                </td>
+                <td>
+                        ${sessionScope.shoppingCart.totalCartPrice} kr.
+                </td>
+                <td>
+                        ${sessionScope.order.done}
+                </td>
+            </tr>
         </table>
-
 
     </jsp:body>
 
