@@ -46,8 +46,8 @@
 
         Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
 
-
         <form action="topayment" method="post">
+
             <button>
                 Til kassen
             </button>

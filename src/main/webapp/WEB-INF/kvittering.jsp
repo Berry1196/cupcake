@@ -18,6 +18,8 @@
             </tr>
             </thead>
 
+            her: ${requestScope.cakeSize}
+
 
             <td>
             <th> Ordre Id: ${sessionScope.order.order_id} - Kunde: ${sessionScope.order.username} - Dato: ${sessionScope.order.date} - Status: ${sessionScope.order.done}

@@ -1,11 +1,13 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.Cake;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.entities.User;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
+import dat.backend.model.persistence.OrderMapper;
 import dat.backend.model.persistence.UserFacade;
 
 import javax.servlet.*;
@@ -21,6 +23,8 @@ public class Payment extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int cakeIndex = Integer.parseInt(request.getParameter("cakeIndex"));
+        request.setAttribute("cakeIndex", cakeIndex);
         response.sendRedirect("WEB-INF/ordre.jsp");
     }
 
@@ -34,6 +38,7 @@ public class Payment extends HttpServlet {
         int userBalance = user.getBalance();
         int totalCartPrice = shoppingCart.getTotalCartPrice();
         int newBalance = userBalance - totalCartPrice;
+        //int cakeIndex = (int) request.getAttribute("cakeIndex");
 
         if(userBalance > totalCartPrice) {
             user.setBalance(newBalance);
@@ -41,6 +46,11 @@ public class Payment extends HttpServlet {
 
             OrderFacade.saveOrder(user.getUsername(), connectionPool);
             Order order = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
+
+            int cakeSize = shoppingCart.getCakesInCart().size();
+            request.setAttribute("cakeSize", cakeSize);
+           // OrderFacade.saveOrderToOrdernline(order.getOrder_id(), shoppingCart.getCakeByIndex(cakeIndex), connectionPool);
+
             session.setAttribute("order",order);
 
         } else {

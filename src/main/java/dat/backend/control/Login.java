@@ -63,6 +63,9 @@ public class Login extends HttpServlet
             List<Order> orderListUser = OrderFacade.getOrderListByUsername(user.getUsername(), connectionPool);
             request.setAttribute("orderListUser",orderListUser);
 
+            Map<ShoppingCart, Order> orderListAdmin = OrderFacade.getOrderListForAdmin(connectionPool);
+            request.setAttribute("orderListAdmin",orderListAdmin);
+
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 
 

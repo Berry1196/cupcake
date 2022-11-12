@@ -59,8 +59,9 @@ public class AddCupcakes extends HttpServlet {
 
                 request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
             }
-        } catch (NullPointerException e) {
-            String besked = "Husk at vælge både top og bund";
+        } catch (Exception e) {
+            e.printStackTrace();
+            String besked = "Husk at vælge både top, bund og antal";
             request.setAttribute("besked", besked);
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
         }

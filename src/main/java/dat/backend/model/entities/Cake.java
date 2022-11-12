@@ -5,13 +5,7 @@ public class Cake {
     private Bottom bottom;
     private Topping topping;
     private int quantity;
-
-
-
     private int cakePrice;
-
-
-
     private int totalCakePrice;
     private int cakeIndex;
 
@@ -69,4 +63,8 @@ public class Cake {
     public void setCakeIndex(int cakeIndex) {
         this.cakeIndex = cakeIndex;
     }
+
+
+
+
 }
