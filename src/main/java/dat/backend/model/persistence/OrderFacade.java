@@ -42,8 +42,20 @@ public class OrderFacade {
         OrderMapper.toggleItem(order_id, connectionPool);
     }
 
-    public static Map<ShoppingCart, Order> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
+    public static Map<Integer,List<Cake>> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
         return OrderMapper.getOrderListForAdminByOrderId(order_id, connectionPool);
+    }
+
+    public static Map<Integer, Cake> getCakeByCupcakeId(int cupcake_id, ConnectionPool connectionPool) {
+        return OrderMapper.getCakeByCupcakeId(cupcake_id, connectionPool);
+    }
+
+    public static  Map<Integer, Integer> getCupcakeIdListByOrderId(int order_id, ConnectionPool connectionPool) {
+        return OrderMapper.getCupcakeIdListByOrderId(order_id, connectionPool);
+    }
+
+    public static List<Order> getMalene(ConnectionPool connectionPool) {
+        return OrderMapper.getMalene(connectionPool);
     }
 
 

@@ -129,7 +129,7 @@ public class OrderMapper {
                 "inner join cupcake.user u on u.username = o.username\n" +
                 "inner join cupcake.orderline ol on o.order_id = ol.order_id \n" +
                 "inner join cupcake.bottom b on b.bottom_id = ol.bottom_id\n" +
-                "inner join cupcake.topping t on t.topping_id = ol.topping_id";
+                "inner join cupcake.topping t on t.topping_id = ol.topping_id order by o.order_id";
 
         try (Connection connection = connectionPool.getConnection()) {
 
@@ -170,12 +170,13 @@ public class OrderMapper {
     }
 
 
-    public static void saveOrderToOrdernline(int order_id, Cake cake, ConnectionPool connectionPool) {
+    public static int saveOrderToOrdernline(int order_id, Cake cake, ConnectionPool connectionPool) {
 
         String sql = " insert into cupcake.orderline (order_id, bottom_id, topping_id, quantity, total_price) value (?,?,?,?,?)";
 
 
         try (Connection connection = connectionPool.getConnection()) {
+
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, order_id);
                 ps.setInt(2, cake.getBottom().getBottomId());
@@ -183,14 +184,20 @@ public class OrderMapper {
                 ps.setInt(4, cake.getQuantity());
                 ps.setInt(5, cake.getTotalCakePrice());
                 ps.executeUpdate();
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int cupcake_id = rs.getInt("cupcake_id");
+                    return cupcake_id;
+
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+        return 0;
     }
 
 
@@ -261,16 +268,17 @@ public class OrderMapper {
     }
 
 
-    public static Map<ShoppingCart, Order> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
+    public static Map<Integer, List<Cake>> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
 
-        Map<ShoppingCart, Order> adminOrderMap = new HashMap<>();
+        List<Cake> cakeList = new ArrayList<>();
+        Map<Integer, List<Cake>> adminOrderMap = new HashMap<>();
 
-        String sql = "SELECT o.date, o.order_id, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_price,  t.topping_id, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
+        String sql = "SELECT o.order_id, o.date, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_id, t.topping_price, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
                 "inner join cupcake.user u on u.username = o.username\n" +
                 "inner join cupcake.orderline ol on o.order_id = ol.order_id \n" +
                 "inner join cupcake.bottom b on b.bottom_id = ol.bottom_id\n" +
-                "inner join cupcake.topping t on t.topping_id = ol.topping_id" +
-                "WHERE o.order_id = ?";
+                "inner join cupcake.topping t on t.topping_id = ol.topping_id\n" +
+                "where ol.order_id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
 
@@ -291,15 +299,12 @@ public class OrderMapper {
                     Timestamp date = rs.getTimestamp("date");
                     Boolean done = rs.getBoolean("done");
 
-
-                    ShoppingCart shoppingCart = new ShoppingCart();
                     Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
-                    shoppingCart.insertCake(cake);
-                    shoppingCart.getTotalCartPrice();
+                    cakeList.add(cake);
 
                     Order order = new Order(id, name, date, done);
 
-                    adminOrderMap.put(shoppingCart, order);
+                    adminOrderMap.put(id, cakeList);
                 }
 
             } catch (SQLException e) {
@@ -311,4 +316,128 @@ public class OrderMapper {
         return adminOrderMap;
 
     }
+
+    public static Map<Integer, Cake> getCakeByCupcakeId(int cupcake_id, ConnectionPool connectionPool) {
+
+        Map<Integer, Cake> cakeList = new HashMap<>();
+
+        String sql = "SELECT o.order_id, o.date, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_id, t.topping_price, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
+                "inner join cupcake.user u on u.username = o.username\n" +
+                "inner join cupcake.orderline ol on o.order_id = ol.order_id \n" +
+                "inner join cupcake.bottom b on b.bottom_id = ol.bottom_id\n" +
+                "inner join cupcake.topping t on t.topping_id = ol.topping_id\n" +
+                "where ol.cupcake_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, cupcake_id);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    String name = rs.getString("username");
+                    String bottomName = rs.getString("bottom_name");
+                    String toppingName = rs.getString("topping_name");
+                    int quantity = rs.getInt("quantity");
+                    int bottomId = rs.getInt("bottom_id");
+                    int bottomPrice = rs.getInt("bottom_price");
+                    int toppingPrice = rs.getInt("topping_price");
+                    int toppingId = rs.getInt("topping_id");
+                    Timestamp date = rs.getTimestamp("date");
+                    Boolean done = rs.getBoolean("done");
+
+                    Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
+                    cakeList.put(cupcake_id, cake);
+                    return cakeList;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Map<Integer, Integer> getCupcakeIdListByOrderId(int order_id, ConnectionPool connectionPool) {
+        Map<Integer, Integer> cupcakeIdList = new HashMap<>();
+
+        String sql = "SELECT cupcake_id from cupcake.orderline where order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int cupcakeId = rs.getInt("cupcake_id");
+                    cupcakeIdList.put(order_id, cupcakeId);
+                }
+                return cupcakeIdList;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static List<Order> getMalene(ConnectionPool connectionPool) {
+
+        List<Order> orderList = new ArrayList<>();
+        ArrayList<Cake> cakeList = new ArrayList<>();
+
+        String sql = "SELECT o.date, o.order_id, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_price,  t.topping_id, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
+                "inner join cupcake.user u on u.username = o.username\n" +
+                "inner join cupcake.orderline ol on o.order_id = ol.order_id \n" +
+                "inner join cupcake.bottom b on b.bottom_id = ol.bottom_id\n" +
+                "inner join cupcake.topping t on t.topping_id = ol.topping_id order by o.order_id";
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    String name = rs.getString("username");
+                    String bottomName = rs.getString("bottom_name");
+                    String toppingName = rs.getString("topping_name");
+                    int quantity = rs.getInt("quantity");
+                    int bottomId = rs.getInt("bottom_id");
+                    int bottomPrice = rs.getInt("bottom_price");
+                    int toppingPrice = rs.getInt("topping_price");
+                    int toppingId = rs.getInt("topping_id");
+                    Timestamp date = rs.getTimestamp("date");
+                    Boolean done = rs.getBoolean("done");
+
+                    Order order = new Order(id, name, date, done);
+
+                    for (int i = 0; i < getOrders(connectionPool).size(); i++) {
+
+                        int orderIdFromDb = getOrders(connectionPool).get(i).getOrder_id();
+                        if(orderIdFromDb == id) {
+                            Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
+                            cakeList.add(cake);
+                        }
+                    }
+                    order.setCakeArrayList(cakeList);
+                    orderList.add(order);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderList;
+    }
+
 }

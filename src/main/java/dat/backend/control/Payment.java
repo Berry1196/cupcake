@@ -52,7 +52,9 @@ public class Payment extends HttpServlet {
 
             for (Cake cake : shoppingCart.getCakesInCart()) {
                  OrderFacade.saveOrderToOrdernline(order.getOrder_id(), new Cake(cake.getBottom(), cake.getTopping(), cake.getQuantity()), connectionPool);
-                session.setAttribute("cakeIndex", cake.getCakeIndex());
+
+
+                 session.setAttribute("cakeIndex", cake.getCakeIndex());
                 session.setAttribute("cake", cake);
             }
 

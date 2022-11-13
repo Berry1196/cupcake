@@ -17,6 +17,11 @@
 
         <form method="post">
             <h3>Behandles</h3>
+
+
+            du trykkede på ordre id: ${requestScope.malene}
+            <br>
+            her: ${requestScope.test}
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -41,9 +46,13 @@
                                     ${order.value.username}
                             </td>
                             <td>
-
                                     ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}
                                 - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake
+                                <br>
+                                <c:if test="${requestScope.malene == order.value.order_id}">
+
+                                </c:if>
+
 
                             </td>
                             <td>
@@ -62,7 +71,15 @@
                                 <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
                                     Klar til udlevering
                                 </button>
+
+                                <button formaction="vis" name="malene" value="${order.value.order_id}">
+                                    vis
+                                </button>
+
+
                             </td>
+
+
                         </tr>
                     </c:if>
                 </c:forEach>
@@ -95,7 +112,7 @@
                             ${order.value.username}
                     </td>
                     <td>
-                        ${sessionScope.cakeIndex} ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName}
+                            ${sessionScope.cakeIndex} ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName}
                     </td>
                     <td>
                             ${order.key.cakesInCart.get(cakeIndex).quantity}

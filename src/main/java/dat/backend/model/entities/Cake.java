@@ -8,12 +8,14 @@ public class Cake {
     private int cakePrice;
     private int totalCakePrice;
     private int cakeIndex;
+    private int cupcakeId;
 
     public Cake(Bottom bottom, Topping topping, int quantity) {
         this.bottom = bottom;
         this.topping = topping;
         this.quantity = quantity;
         this.cakeIndex = cakeIndex;
+        this.cupcakeId = cupcakeId;
     }
 
 
@@ -64,7 +66,11 @@ public class Cake {
         this.cakeIndex = cakeIndex;
     }
 
+    public int getCupcakeId() {
+        return cupcakeId;
+    }
 
-
-
+    public void setCupcakeId(int cupcakeId) {
+        this.cupcakeId = cupcakeId;
+    }
 }
