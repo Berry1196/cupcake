@@ -20,7 +20,7 @@
 </head>
 <body>
 <header>
-    <div class="container">
+    <div class="container pt-1">
         <div class="row">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
@@ -64,7 +64,7 @@
 </nav>
 
 
-<div id="body" class="container mt-4" style="min-height: 400px;">
+<div id="body" class="container mt-2" style="min-height: 400px;">
     <h1>
         <jsp:invoke fragment="header"/>
     </h1>
