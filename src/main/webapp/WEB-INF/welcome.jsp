@@ -26,9 +26,8 @@
 
         <form action="addCupcakes" method="post">
             <div class="container light-grey ">
-
                 <h1>Velkommen ombord!</h1>
-                <div class="h">Øens bedste cupcakes. Vælg og bestil her:</div>
+                <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
             <div class="row">
                 <div class="col  form-group  m-5 ">
                     <select class="form-select" name="topping">
