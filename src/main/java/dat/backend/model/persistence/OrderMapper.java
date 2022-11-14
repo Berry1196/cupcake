@@ -12,6 +12,7 @@ public class OrderMapper {
 
     static List<Order> getOrders(ConnectionPool connectionPool) {
         List<Order> orderList = new ArrayList<>();
+        ArrayList<Cake> cakeList = new ArrayList<>();
 
         String sql = "SELECT * FROM cupcake.order order by order_id";
 
@@ -25,7 +26,7 @@ public class OrderMapper {
                     Timestamp date = rs.getTimestamp("date");
                     Boolean done = rs.getBoolean("done");
 
-                    Order newOrder = new Order(id, name, date, done);
+                    Order newOrder = new Order(id, name, date, done, cakeList);
                     orderList.add(newOrder);
                 }
 
@@ -388,10 +389,14 @@ public class OrderMapper {
     }
 
 
-    public static List<Order> getMalene(ConnectionPool connectionPool) {
+    public static Map<Integer, Order> getMalene(ConnectionPool connectionPool) {
 
-        List<Order> orderList = new ArrayList<>();
+        List<Order> orderList = OrderFacade.getOrders(connectionPool);
         ArrayList<Cake> cakeList = new ArrayList<>();
+
+        Map<Integer, Order> orderMap = new TreeMap<>();
+
+        List<Cake> niksKager = new ArrayList<>();
 
         String sql = "SELECT o.date, o.order_id, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_price,  t.topping_id, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
                 "inner join cupcake.user u on u.username = o.username\n" +
@@ -417,30 +422,30 @@ public class OrderMapper {
                     Timestamp date = rs.getTimestamp("date");
                     Boolean done = rs.getBoolean("done");
 
+//                    Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
+//                    niksKager.add(cake);
+//
+//                    Order order = new Order(id, name, date, done);
+//                    orderMap.put(order.getOrder_id(), order);
 
                     for (int i = 0; i < getOrders(connectionPool).size()-1; i++) {
                         int orderIdFromDb = getOrders(connectionPool).get(i).getOrder_id();
-                        Order order = new Order(orderIdFromDb, name, date, done);
+                        Order order = new Order(orderIdFromDb, name, date, done, cakeList);
 
                         if(orderIdFromDb == id) {
                             Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
-                            cakeList.add(cake);
-                            order.setCakeArrayList(cakeList);
+                            order.getCakeArrayList().add(cake);
                         }
-                        orderList.add(order);
+                        orderMap.put(orderIdFromDb, order);
                     }
-
-//                    shoppingCart.getTotalCartPrice();
-
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orderList;
+        return orderMap;
     }
 
 

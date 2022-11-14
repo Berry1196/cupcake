@@ -8,7 +8,7 @@ public class Order {
     private String username;
     private Timestamp date;
     private Boolean done;
-    private ArrayList<Cake> cakeArrayList;
+    private ArrayList<Cake> cakeArrayList = new ArrayList<>();
 
     public Order(int order_id, String username, Timestamp date, Boolean done) {
         this.order_id = order_id;
@@ -23,7 +23,6 @@ public class Order {
         this.date = date;
         this.done = done;
         this.cakeArrayList = cakeArrayList;
-
     }
 
     public int getOrder_id() {

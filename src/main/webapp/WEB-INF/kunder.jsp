@@ -37,15 +37,15 @@
                 </thead>
 
                 <c:forEach var="order" items="${requestScope.getMalene}">
-                    <c:if test="${order.done == false}">
+                    <c:if test="${order.value.done == false}">
 
                         <tr>
                             <td>
-                                    ${order.order_id}
+                                    ${order.value.order_id}   ordre id
 
                             </td>
                             <td>
-                                    ${order.username}
+                                    ${order.value.username}  kunde
 
                             </td>
                             <td>
@@ -53,34 +53,40 @@
                                     <%--                                - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake--%>
                                     <%--                                <br>--%>
                                     <%--                              --%>
-                                <c:forEach var="kageListe" items="${requestScope.theCakeListBaby}">
-                                    <c:forEach var="kage" items="${kageListe.value}">
-                                        ${kage.topping.toppingName} -  ${kage.bottom.bottomName} cupcake <br>
+
+
+                                    <c:forEach var="kageListen" items="${order.value.cakeArrayList}">
+                                        ${kageListen.topping.toppingName} -  ${kageListen.bottom.bottomName} cupcake
+                                        <br>
                                     </c:forEach>
-                                </c:forEach>
+
 
                             </td>
                             <td>
-                                <c:forEach var="kageListe" items="${requestScope.theCakeListBaby}">
-                                    <c:forEach var="kage" items="${kageListe.value}">
-                                        ${kage.quantity} stk. <br>
-                                    </c:forEach>
-                                </c:forEach>
-                            </td>
-                            <td>
-                                    ${order.date}
+<%--                                <c:forEach var="ordre" items="${requestScope.getMalene}">--%>
+
+<%--                                    <c:forEach var="kageListen" items="${ordre.value.cakeArrayList}">--%>
+<%--                                        ${kageListen.quantity} stk <br>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </c:forEach>--%>
+
+                                antal
 
                             </td>
                             <td>
-                                    ${requestScope.newPrice}kr
+                                    ${order.value.date} dato
+
+                            </td>
+                            <td>
+                                        total pris
                             </td>
                             <td>
 
-                                <button formaction="toggleitem" name="order_id" value="${order.order_id}">
+                                <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
                                     Klar til udlevering
                                 </button>
 
-                                <button formaction="vis" name="malene" value="${order.order_id}">
+                                <button formaction="vis" name="malene" value="${order.value.order_id}">
                                     vis
                                 </button>
 

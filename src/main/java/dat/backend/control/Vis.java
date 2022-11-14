@@ -34,7 +34,7 @@ public class Vis extends HttpServlet {
         int malene = Integer.parseInt(request.getParameter("malene"));
         request.setAttribute("malene", malene);
 
-        List<Order> getMalene = OrderFacade.getMalene(connectionPool);
+        Map<Integer, Order> getMalene = OrderFacade.getMalene(connectionPool);
         request.setAttribute("getMalene", getMalene);
 
         Map<Integer, List<Cake>> theCakeListBaby = new TreeMap<>();
