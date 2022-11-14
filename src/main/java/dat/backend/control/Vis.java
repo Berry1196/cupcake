@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(name = "Vis", value = "/vis")
 public class Vis extends HttpServlet {
@@ -36,53 +34,27 @@ public class Vis extends HttpServlet {
         int malene = Integer.parseInt(request.getParameter("malene"));
         request.setAttribute("malene", malene);
 
-        if(malene != 0) {
+        List<Order> getMalene = OrderFacade.getMalene(connectionPool);
+        request.setAttribute("getMalene", getMalene);
 
-            request.setAttribute("hej", "hallll'øøøøøøøøjsaaa");
+        Map<Integer, List<Cake>> theCakeListBaby = new TreeMap<>();
 
-        } else {
 
+        int totalCost = 0;
+
+        Map<Order, List<Cake>> getOrderListForAdminByOrderId = OrderFacade.getOrderListForAdminByOrderId(malene, connectionPool);
+
+        for (List<Cake> cakeLists : getOrderListForAdminByOrderId.values()) {
+            theCakeListBaby.put(malene, cakeLists);
+
+            for (int i = 0; i < cakeLists.size(); i++) {
+                totalCost = cakeLists.get(i).getTotalCakePrice() + totalCost;
+            }
+            int newPrice = totalCost / 3;
+            request.setAttribute("newPrice", newPrice);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        HttpSession session = request.getSession();
-
-        List<Order> orderIds = new ArrayList<>();
-        Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
-
-        Map<Integer, List<Cake>> getOrderListForAdminByOrderId;
-        for (Order order : adminOrderList.values()) {
-            orderIds.add(order);
-            getOrderListForAdminByOrderId = OrderFacade.getOrderListForAdminByOrderId(order.getOrder_id(), connectionPool);
-
-            int cupcakeId = 0;
-            Map<Integer, Integer> cupcakeIdList = OrderFacade.getCupcakeIdListByOrderId(order.getOrder_id(), connectionPool);
-            Map<Integer, Cake> getCakeByCupcakeId = OrderFacade.getCakeByCupcakeId(order.getOrder_id(), connectionPool);
-            String test = "ordre nr 90 har dette cupcake id: " + OrderFacade.getCupcakeIdListByOrderId(90, connectionPool);
-            request.setAttribute("test", test);
-
-
-            request.setAttribute("getCakeByCupcakeId", getCakeByCupcakeId);
-            session.setAttribute("getOrderListForAdminByOrderId", getOrderListForAdminByOrderId);
-            request.setAttribute("cupcakeIdList", cupcakeIdList);
-        }
-
-        request.setAttribute("adminOrderList", adminOrderList);
-        request.setAttribute("orderIds", orderIds);
-
+        request.setAttribute("theCakeListBaby", theCakeListBaby);
 
         request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request, response);
     }

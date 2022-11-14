@@ -20,6 +20,7 @@
 
 
             du trykkede på ordre id: ${requestScope.malene}
+            størrelse: ${requestScope.getOrders.size()}
             <br>
             her: ${requestScope.test}
             <table class="table table-striped">
@@ -35,51 +36,55 @@
                 </tr>
                 </thead>
 
-                    <%--                            Map(shoppingcart, ordet)--%>
-                <c:forEach var="order" items="${requestScope.adminOrderList}">
-                    <c:if test="${order.value.done == false}">
+                <c:forEach var="order" items="${requestScope.getMalene}">
+                    <c:if test="${order.done == false}">
+
                         <tr>
                             <td>
-                                    ${order.value.order_id}
-                            </td>
-                            <td>
-                                    ${order.value.username}
-                            </td>
-                            <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}
-                                - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake
-                                <br>
-                                <c:if test="${requestScope.malene == order.value.order_id}">
-
-                                </c:if>
-
+                                    ${order.order_id}
 
                             </td>
                             <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).quantity}
-                            </td>
-                            <td>
-                                    ${order.value.date}
+                                    ${order.username}
 
                             </td>
                             <td>
-                                    ${order.key.totalCartPrice} kr.
+                                    <%--                                    ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}--%>
+                                    <%--                                - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake--%>
+                                    <%--                                <br>--%>
+                                    <%--                              --%>
+                                <c:forEach var="kageListe" items="${requestScope.theCakeListBaby}">
+                                    <c:forEach var="kage" items="${kageListe.value}">
+                                        ${kage.topping.toppingName} -  ${kage.bottom.bottomName} cupcake <br>
+                                    </c:forEach>
+                                </c:forEach>
 
                             </td>
                             <td>
+                                <c:forEach var="kageListe" items="${requestScope.theCakeListBaby}">
+                                    <c:forEach var="kage" items="${kageListe.value}">
+                                        ${kage.quantity} stk. <br>
+                                    </c:forEach>
+                                </c:forEach>
+                            </td>
+                            <td>
+                                    ${order.date}
 
-                                <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
+                            </td>
+                            <td>
+                                    ${requestScope.newPrice}kr
+                            </td>
+                            <td>
+
+                                <button formaction="toggleitem" name="order_id" value="${order.order_id}">
                                     Klar til udlevering
                                 </button>
 
-                                <button formaction="vis" name="malene" value="${order.value.order_id}">
+                                <button formaction="vis" name="malene" value="${order.order_id}">
                                     vis
                                 </button>
 
-
                             </td>
-
-
                         </tr>
                     </c:if>
                 </c:forEach>

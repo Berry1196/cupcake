@@ -1,5 +1,7 @@
 package dat.backend.model.entities;
 
+import java.util.ArrayList;
+
 public class Cake {
 
     private Bottom bottom;
@@ -9,6 +11,8 @@ public class Cake {
     private int totalCakePrice;
     private int cakeIndex;
     private int cupcakeId;
+    private ArrayList<Cake> cakesInCart = new ArrayList<>();
+
 
     public Cake(Bottom bottom, Topping topping, int quantity) {
         this.bottom = bottom;
@@ -16,6 +20,7 @@ public class Cake {
         this.quantity = quantity;
         this.cakeIndex = cakeIndex;
         this.cupcakeId = cupcakeId;
+        this.cakesInCart = cakesInCart;
     }
 
 
@@ -72,5 +77,9 @@ public class Cake {
 
     public void setCupcakeId(int cupcakeId) {
         this.cupcakeId = cupcakeId;
+    }
+
+    public ArrayList<Cake> getCakesInCart() {
+        return cakesInCart;
     }
 }

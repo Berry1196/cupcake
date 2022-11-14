@@ -13,7 +13,7 @@ public class OrderMapper {
     static List<Order> getOrders(ConnectionPool connectionPool) {
         List<Order> orderList = new ArrayList<>();
 
-        String sql = "SELECT * FROM cupcake.order";
+        String sql = "SELECT * FROM cupcake.order order by order_id";
 
         try (Connection connection = connectionPool.getConnection()) {
 
@@ -268,10 +268,10 @@ public class OrderMapper {
     }
 
 
-    public static Map<Integer, List<Cake>> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
+    public static  Map<Order, List<Cake>>  getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
 
         List<Cake> cakeList = new ArrayList<>();
-        Map<Integer, List<Cake>> adminOrderMap = new HashMap<>();
+        Map<Order, List<Cake>> adminOrderMap = new HashMap<>();
 
         String sql = "SELECT o.order_id, o.date, u.username, b.bottom_name, b.bottom_id, b.bottom_price, t.topping_name, t.topping_id, t.topping_price, ol.quantity, ol.total_price, o.done FROM cupcake.order o \n" +
                 "inner join cupcake.user u on u.username = o.username\n" +
@@ -304,7 +304,7 @@ public class OrderMapper {
 
                     Order order = new Order(id, name, date, done);
 
-                    adminOrderMap.put(id, cakeList);
+                    adminOrderMap.put(order, cakeList);
                 }
 
             } catch (SQLException e) {
@@ -417,18 +417,21 @@ public class OrderMapper {
                     Timestamp date = rs.getTimestamp("date");
                     Boolean done = rs.getBoolean("done");
 
-                    Order order = new Order(id, name, date, done);
 
-                    for (int i = 0; i < getOrders(connectionPool).size(); i++) {
-
+                    for (int i = 0; i < getOrders(connectionPool).size()-1; i++) {
                         int orderIdFromDb = getOrders(connectionPool).get(i).getOrder_id();
+                        Order order = new Order(orderIdFromDb, name, date, done);
+
                         if(orderIdFromDb == id) {
                             Cake cake = new Cake(new Bottom(bottomId, bottomName, bottomPrice), new Topping(toppingId, toppingName, toppingPrice), quantity);
                             cakeList.add(cake);
+                            order.setCakeArrayList(cakeList);
                         }
+                        orderList.add(order);
                     }
-                    order.setCakeArrayList(cakeList);
-                    orderList.add(order);
+
+//                    shoppingCart.getTotalCartPrice();
+
                 }
 
             } catch (SQLException e) {
@@ -439,5 +442,9 @@ public class OrderMapper {
         }
         return orderList;
     }
+
+
+
+
 
 }

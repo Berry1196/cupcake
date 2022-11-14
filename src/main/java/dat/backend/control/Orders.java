@@ -31,7 +31,7 @@ public class Orders extends HttpServlet {
             Map<Integer, List<Cake>> getOrderListForAdminByOrderId;
         for (Order order : adminOrderList.values()) {
             orderIds.add(order);
-            getOrderListForAdminByOrderId = OrderFacade.getOrderListForAdminByOrderId(order.getOrder_id(), connectionPool);
+            //getOrderListForAdminByOrderId = OrderFacade.getOrderListForAdminByOrderId(order.getOrder_id(), connectionPool);
 
             int cupcakeId = 0;
             Map<Integer, Integer> cupcakeIdList = OrderFacade.getCupcakeIdListByOrderId(order.getOrder_id(), connectionPool);
@@ -41,7 +41,7 @@ public class Orders extends HttpServlet {
 
 
             request.setAttribute("getCakeByCupcakeId", getCakeByCupcakeId);
-            session.setAttribute("getOrderListForAdminByOrderId", getOrderListForAdminByOrderId);
+          //  session.setAttribute("getOrderListForAdminByOrderId", getOrderListForAdminByOrderId);
             request.setAttribute("cupcakeIdList", cupcakeIdList);
         }
 
@@ -51,6 +51,13 @@ public class Orders extends HttpServlet {
        List<Order> getMalene = OrderFacade.getMalene(connectionPool);
        request.setAttribute("getMalene", getMalene);
 
+        List<Order> getOrders = OrderFacade.getOrders(connectionPool);
+        request.setAttribute("getOrders", getOrders);
+
+
+
+        Map<ShoppingCart, Order>  forAdmin = OrderFacade.getOrderListForAdmin(connectionPool);
+        request.setAttribute("forAdmin", forAdmin);
 
         request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request, response);
 

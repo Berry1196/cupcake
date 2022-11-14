@@ -42,7 +42,7 @@ public class OrderFacade {
         OrderMapper.toggleItem(order_id, connectionPool);
     }
 
-    public static Map<Integer,List<Cake>> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
+    public static Map<Order, List<Cake>>  getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
         return OrderMapper.getOrderListForAdminByOrderId(order_id, connectionPool);
     }
 
@@ -57,6 +57,8 @@ public class OrderFacade {
     public static List<Order> getMalene(ConnectionPool connectionPool) {
         return OrderMapper.getMalene(connectionPool);
     }
+
+
 
 
 }

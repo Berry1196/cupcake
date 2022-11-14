@@ -50,5 +50,9 @@ public class Order {
     public void setCakeArrayList(ArrayList<Cake> cakeArrayList) {
         this.cakeArrayList = cakeArrayList;
     }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
 }
 
