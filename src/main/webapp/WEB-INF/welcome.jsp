@@ -25,48 +25,45 @@
         </c:if>
 
         <form action="addCupcakes" method="post">
-            <div class="container light-grey ">
-                <h1>Velkommen ombord!</h1>
-                <h4>Øens bedste cupcakes. Vælg og bestil her:</h4>
-            <div class="row">
-                <div class="col  form-group  m-5 ">
-                    <select class="form-select" name="topping">
-                        <option selected>Vælg top</option>
-                        <c:forEach var="topping" items="${requestScope.toppingMap.values()}">
-                            <option value="${topping.toppingName}"> ${topping.toppingName} ${topping.topppingPrice}kr.</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="col form-group  m-5 ">
-                    <select class="form-select" name="bottom">
-                        <option selected>Vælg bund</option>
-                        <c:forEach var="bottom" items="${requestScope.bottomMap.values()}">
-                            <option value="${bottom.bottomName}">${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <div class="col-2 form-group m-5">
-                    <select class="form-select" name="quantity">
-                        <c:forEach begin="1" end="20" varStatus="loop">
-                            <option value="${loop.index}">${loop.index}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <div class="container light-grey">
+                <h1>Øens bedste cupcakes!</h1>
+                <h4>Vælg og bestil her:</h4>
                 <div class="row">
-                    <div class="col-3 text-end">
-                    <button type="submit" value="Tilføj til kurv" class="btn btn-primary mt-2 fs-5 ">Tilføj til kurv</button>
+                    <div class="col  form-group  mt-5 me-5 ms-5">
+                        <select class="form-select" name="topping">
+                            <option selected>Vælg top</option>
+                            <c:forEach var="topping" items="${requestScope.toppingMap.values()}">
+                                <option value="${topping.toppingName}"> ${topping.toppingName} ${topping.topppingPrice}kr.</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="col form-group  mt-5  me-5 ">
+                        <select class="form-select" name="bottom">
+                            <option selected>Vælg bund</option>
+                            <c:forEach var="bottom" items="${requestScope.bottomMap.values()}">
+                                <option value="${bottom.bottomName}">${bottom.bottomName} ${bottom.bottomPrice}kr.</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="col-2 form-group mt-5 me-4">
+                        <select class="form-select" name="quantity">
+                            <c:forEach begin="1" end="20" varStatus="loop">
+                                <option value="${loop.index}">${loop.index}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="text-end mt-3">
+                            <button type="submit" value="Tilføj til kurv" class="btn purple">Tilføj til kurv
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
                     ${requestScope.besked}
 
-            DEN totale pris er: ${sessionScope.totalCartPrice}
-            <br>
-            <br>
-            <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                Top: ${cake.topping.toppingName} - Bund: ${cake.bottom.bottomName} - Antal: ${cake.quantity} <br>
-            </c:forEach>
+                <h4>Den totale pris er: ${sessionScope.totalCartPrice} kr.</h4>
+                <br>
 
             </div>
         </form>

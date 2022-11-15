@@ -24,7 +24,7 @@ public class CreateUserForm extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.sendRedirect("index.jsp");
     }
 
     @Override
@@ -46,15 +46,14 @@ public class CreateUserForm extends HttpServlet {
 
             session.setAttribute("user", user); // adding user object to session scope
             session.setAttribute("username", username);
-            //List<Item> itemList = ItemFacade.getItems(connectionPool);
-            //request.setAttribute("itemList", itemList);
 
             session.setAttribute("besked", besked);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
             }
             besked = "Adgangskoderne er ikke ens. Prøv igen!";
             session.setAttribute("besked", besked);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
         } catch (DatabaseException e) {
