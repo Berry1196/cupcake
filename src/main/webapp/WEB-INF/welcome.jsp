@@ -55,7 +55,7 @@
                     </div>
                     <div class="row">
                         <div class="text-end mt-3">
-                            <button type="submit" value="Tilføj til kurv" class="btn purple">Tilføj til kurv
+                            <button type="submit" value="Tilføj til kurv" class="btn purple kurvTekst">Tilføj til kurv
                             </button>
                         </div>
                     </div>

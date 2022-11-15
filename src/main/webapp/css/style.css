@@ -29,6 +29,9 @@ th, td {
 }
 
 .purple{
-    background-color: #3C1460 !important;
+    background-color: rebeccapurple !important;
 }
 
+.kurvTekst{
+    color: white !important;
+}

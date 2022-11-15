@@ -4,6 +4,8 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,5 +76,23 @@ class UserMapper {
     }
 
 
+     static List<String> getAllUsers(ConnectionPool connectionPool) {
+        String sql = "SELECT username from cupcake.user";
+
+        List<String> userNameList = new ArrayList<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    String username = rs.getString("username");
+                    userNameList.add(username);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return userNameList;
+    }
 
 }

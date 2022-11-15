@@ -21,7 +21,6 @@ public class CreateUserForm extends HttpServlet {
     private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("index.jsp");
@@ -39,20 +38,28 @@ public class CreateUserForm extends HttpServlet {
         String role = "user";
 
         try {
-            if(newpassword.equals(repnewpassword)){
-            User user = UserFacade.createUser(username, newpassword, role, connectionPool);
+            for (String name : UserFacade.getAllUsers(connectionPool)) {
+                if(username.equals(name)) {
+                    besked = "En bruger med dette navn findes allerede. Prøv igen!";
+                    session.setAttribute("besked", besked);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+            }
 
-            besked = "Du har nu oprettet en bruger. Venligst log på";
+            if(newpassword.equals(repnewpassword)) {
+                User user = UserFacade.createUser(username, newpassword, role, connectionPool);
 
-            session.setAttribute("user", user); // adding user object to session scope
-            session.setAttribute("username", username);
+                besked = "Du har nu oprettet en bruger. Venligst log på";
 
-            session.setAttribute("besked", besked);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+                session.setAttribute("user", user); // adding user object to session scope
+                session.setAttribute("username", username);
+
+                session.setAttribute("besked", besked);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
 
             }
             besked = "Adgangskoderne er ikke ens. Prøv igen!";
-            session.setAttribute("besked", besked);
+            request.setAttribute("besked", besked);
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
