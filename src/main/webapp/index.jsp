@@ -26,6 +26,8 @@
             <label for="password">Adgangskode: </label>
             <input type="password" id="password" name="password"/>
             <input type="submit" value="Log in"/>
+            <br>
+                ${requestScope.besked}
         </form>
 
         <br>
@@ -33,8 +35,8 @@
 
         <h4>Eller oprette dig som ny kunde</h4>
         <form action="createuserform" method="post">
-            <label for="newusername">Brugernavn: </label>
-            <input type="text" id="newusername" name="newusername"/> <br>
+            <label for="newusername">Email: </label>
+            <input type="email" id="newusername" name="newusername"/> <br>
             <label for="newpassword">Adgangskode: </label>
             <input type="password" id="newpassword" name="newpassword"/><br>
             <label for="repnewpassword">Gentag adgangskode: </label>
