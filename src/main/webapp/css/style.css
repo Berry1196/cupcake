@@ -22,4 +22,9 @@ th, td {
 .white-but{
     background-color: white;
 }
+.bigletters {
+    font-size: 50px;
+    font-weight: bolder;
+    color: blue;
+}
 
