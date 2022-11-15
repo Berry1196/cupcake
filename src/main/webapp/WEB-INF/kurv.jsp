@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         kurv
+         Valgte varer i kurv
     </jsp:attribute>
 
 
@@ -15,45 +15,77 @@
 
     <jsp:body>
 
+       <br>
 
-        <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-end">
+                <th>Antal</th>
+                <th>Stk pris</th>
+                <th class="text-center">Top</th>
+                <th class="text-center">Bund</th>
+                <th></th>
+                <th>Total</th>
 
-            <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr -
-                Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
-
-                <form action="editcart" method="post">
-
-                    <button name="cakeIndex" value="${cake.cakeIndex}">
-                        Rediger
-                    </button>
-
-                </form>
-
-                <form action="deletefromcart" method="post">
-
-                    <button name="cakeIndex" value="${cake.cakeIndex}">
-                        Slet
-                    </button>
-
-                </form>
+            </tr>
+            </thead>
 
 
-            </td>
-            <br>
+            <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+                <tr class="text-end">
+                    <td>${cake.quantity} x </td>
+                    <td>${cake.cakePrice} kr</td>
+                    <td class="text-center">${cake.topping.toppingName}</td>
+                    <td class="text-center">${cake.bottom.bottomName}</td>
+                    <td> </td>
+                    <td> ${cake.totalCakePrice} kr</td>
 
-        </c:forEach>
-        <br>
+                    <td>
+                    <form action="editcart" method="post">
 
-        Ialt : ${sessionScope.shoppingCart.totalCartPrice}kr
+                        <button name="cakeIndex" value="${cake.cakeIndex}">
+                            Rediger
+                        </button>
 
-        <form action="topayment" method="post" name="${sessionScope.shoppingCart.cakesInCart}">
+                    </form>
+                    </td>
+                    <td>
+                    <form action="deletefromcart" method="post">
 
-            <button>
-                Til kassen
-            </button>
-            <br>
+                        <button name="cakeIndex" value="${cake.cakeIndex}">
+                            Slet
+                        </button>
 
-        </form>
+                    </form>
+                    </td>
+
+                </tr>
+            </c:forEach>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr class="text-end">
+                <td> </td>
+                <td> </td>
+                <td></td>
+                <td> </td>
+                <td class="text-end pt-3" ><b>I alt:</b></td>
+                <td class="pt-3" >${sessionScope.shoppingCart.totalCartPrice} kr</td>
+
+                <td>
+                    <form action="topayment" method="post" name="${sessionScope.shoppingCart.cakesInCart}">
+
+                        <button type="submit" class="btn btn-primary">
+                            Til kassen
+                        </button>
+                        <br>
+
+                    </form>
+                </td>
+                <td>
+
+                </td>
+
+            </tr>
+        </table>
 
 
     </jsp:body>
