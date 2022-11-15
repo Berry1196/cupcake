@@ -42,34 +42,26 @@
 
                     <td>
                         <form action="editcart" method="post">
-
-                            <button name="cakeIndex" value="${cake.cakeIndex}">
+                            <button class="btn btn-secondary kurvTekst" name="cakeIndex" value="${cake.cakeIndex}">
                                 Rediger
                             </button>
-
                         </form>
                     </td>
                     <td>
                         <form action="deletefromcart" method="post">
-
-                            <button name="cakeIndex" value="${cake.cakeIndex}">
+                            <button class="btn btn-secondary kurvTekst" name="cakeIndex" value="${cake.cakeIndex}">
                                 Slet
                             </button>
-
                         </form>
-                    </td>
 
+                    </td>
+                    <td></td>
                 </tr>
             </c:forEach>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <c:forEach begin="1" end="9" varStatus="loop">
+                    <td></td>
+                </c:forEach>
             </tr>
             <tr class="text-end">
                 <td></td>
@@ -78,6 +70,10 @@
                 <td></td>
                 <td class="text-end pt-3"><b>I alt:</b></td>
                 <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr</td>
+
+                <td>
+
+                </td>
 
                 <td>
 
@@ -93,6 +89,8 @@
                     </form>
 
                 </td>
+
+
 
             </tr>
         </table>

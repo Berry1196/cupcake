@@ -54,16 +54,13 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="text-end mt-3">
+                        <div class="text-end mt-3 mb-3">
                             <button type="submit" value="Tilføj til kurv" class="btn purple kurvTekst">Tilføj til kurv
                             </button>
                         </div>
                     </div>
                 </div>
                     ${requestScope.besked}
-
-                <h4>Den totale pris er: ${sessionScope.totalCartPrice} kr.</h4>
-                <br>
 
             </div>
         </form>
