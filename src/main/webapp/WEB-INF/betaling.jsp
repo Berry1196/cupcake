@@ -39,7 +39,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td> ${cake.totalCakePrice} kr</td>
+                    <td> ${cake.totalCakePrice},- kr.</td>
                     <td></td>
                     <td></td>
                 </tr>

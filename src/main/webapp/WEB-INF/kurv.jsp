@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Valgte varer i kurv
+         Din indkøbskurv
     </jsp:attribute>
 
 
