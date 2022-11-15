@@ -22,7 +22,7 @@
             <input type="text" id="username" name="username"/>
             <label for="amount">Indbetal til konto: </label>
             <input type="number" id="amount" name="amount"/>
-            <button type="submit" value="Indbetal" class="btn purple kurvTekst m-3">Indbetal<button/>
+            <button type="submit" value="Indbetal" class="btn purple kurvTekst m-3">Indbetal</button>
         </form>
 
         <form method="post">

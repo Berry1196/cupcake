@@ -10,7 +10,7 @@
 
     <jsp:body>
         <br>
-        <div class="container light-grey text-center">
+        <div class="container light-grey text-center p-2">
             <h3>Behandles</h3>
             <table class="table table-striped">
                 <thead>
@@ -91,6 +91,7 @@
                         </tr>
                     </c:if>
                 </c:forEach>
+
             </table>
         </div>
         <br>
