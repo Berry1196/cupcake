@@ -9,14 +9,14 @@
     </jsp:attribute>
 
     <jsp:body>
-        <table class="table table-striped">
+        <table class="table table-striped text-center">
             <thead>
             <tr>
                 <th>Ordre ID</th>
                 <th>Cupcake</th>
                 <th>Antal</th>
                 <th>Dato</th>
-                <th>Total Pris</th>
+                <th>Total pris</th>
                 <th>Status</th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                        ${cake.quantity} <br>
+                        ${cake.quantity} stk. <br>
                     </c:forEach>
 
                 </td>
@@ -42,10 +42,11 @@
                         ${sessionScope.order.date}
                 </td>
                 <td>
-                        ${sessionScope.shoppingCart.totalCartPrice} kr.
+                        ${sessionScope.shoppingCart.totalCartPrice},- kr.
                 </td>
                 <td>
-                        ${sessionScope.order.done}
+                    Vi går straks i gang <br> med at bage kagerne!
+<%--                        ${sessionScope.order.done}--%>
                 </td>
             </tr>
         </table>

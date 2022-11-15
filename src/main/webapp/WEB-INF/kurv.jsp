@@ -21,11 +21,11 @@
             <thead>
             <tr class="text-end">
                 <th>Antal</th>
-                <th>Stk pris</th>
-                <th class="text-center">Top</th>
-                <th class="text-center">Bund</th>
+                <th>Pris pr. stk.</th>
+                <th class="text-center">Bottom</th>
+                <th class="text-center">Topping</th>
                 <th></th>
-                <th>Total</th>
+                <th>Total pris</th>
 
             </tr>
             </thead>
@@ -35,8 +35,8 @@
                 <tr class="text-end">
                     <td>${cake.quantity} x</td>
                     <td>${cake.cakePrice},- kr.</td>
-                    <td class="text-center">${cake.topping.toppingName}</td>
                     <td class="text-center">${cake.bottom.bottomName}</td>
+                    <td class="text-center">${cake.topping.toppingName}</td>
                     <td></td>
                     <td> ${cake.totalCakePrice},- kr.</td>
 
