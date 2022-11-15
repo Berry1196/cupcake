@@ -34,7 +34,7 @@
             <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
                 <tr class="text-end">
                     <td>${cake.quantity} x</td>
-                    <td>${cake.cakePrice} kr</td>
+                    <td>${cake.cakePrice} kr.</td>
                     <td class="text-center">${cake.topping.toppingName}</td>
                     <td class="text-center">${cake.bottom.bottomName}</td>
                     <td></td>
@@ -69,7 +69,7 @@
                 <td></td>
                 <td></td>
                 <td class="text-end pt-3"><b>I alt:</b></td>
-                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr</td>
+                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr.</td>
 
                 <td>
 

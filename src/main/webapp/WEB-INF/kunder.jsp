@@ -22,9 +22,8 @@
             <input type="text" id="username" name="username"/>
             <label for="amount">Indbetal til konto: </label>
             <input type="number" id="amount" name="amount"/>
-            <input type="submit" value="Indbetal"/>
+            <button type="submit" value="Indbetal" class="btn purple kurvTekst">Indbetal<button/>
         </form>
-
 
 
         <form method="post">
@@ -34,7 +33,9 @@
                 <tr>
                     <th>Ordre ID</th>
                     <th>Kunde</th>
+                    <th></th>
                     <th>Cupcake</th>
+                    <th></th>
                     <th>Antal</th>
                     <th>Dato</th>
                     <th>Total Pris</th>
@@ -52,12 +53,14 @@
                             <td>
                                     ${order.value.username}
                             </td>
+                            <td></td>
                             <td>
 
-                                    ${order.key.cakesInCart.get(cakeIndex).topping.toppingName}
-                                - ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} cupcake
+                                    ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} bottom
+                                with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
 
                             </td>
+                            <td></td>
                             <td>
                                     ${order.key.cakesInCart.get(cakeIndex).quantity}
                             </td>
@@ -71,7 +74,8 @@
                             </td>
                             <td>
 
-                                <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
+                                <button formaction="toggleitem" name="order_id" value="${order.value.order_id}"
+                                        class="btn purple kurvTekst">
                                     Klar til udlevering
                                 </button>
                             </td>
@@ -88,7 +92,9 @@
             <tr>
                 <th>Ordre ID</th>
                 <th>Kunde</th>
+                <th></th>
                 <th>Cupcake</th>
+                <th></th>
                 <th>Antal</th>
                 <th>Dato</th>
                 <th>Total Pris</th>
@@ -106,9 +112,12 @@
                     <td>
                             ${order.value.username}
                     </td>
+                    <td></td>
                     <td>
-                        ${sessionScope.cakeIndex} ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName}
+                            ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} bottom
+                                with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
                     </td>
+                    <td></td>
                     <td>
                             ${order.key.cakesInCart.get(cakeIndex).quantity}
                     </td>
@@ -122,7 +131,8 @@
                     </td>
                     <td>
 
-                        <button formaction="toggleitem" name="order_id" value="${order.value.order_id}">
+                        <button formaction="toggleitem" name="order_id" value="${order.value.order_id}"
+                                class="btn purple kurvTekst ps-5 pe-5">
                             Fortryd
                         </button>
                     </td>

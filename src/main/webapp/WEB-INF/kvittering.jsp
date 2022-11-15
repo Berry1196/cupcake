@@ -28,7 +28,7 @@
                 </td>
                 <td>
                     <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                            ${cake.topping.toppingName} -  ${cake.bottom.bottomName} cupcake <br>
+                             ${cake.bottom.bottomName} bottom with ${cake.topping.toppingName} topping <br>
                     </c:forEach>
 
                 </td>

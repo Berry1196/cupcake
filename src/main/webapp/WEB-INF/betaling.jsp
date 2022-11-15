@@ -45,7 +45,7 @@
                 </tr>
             </c:forEach>
             <tr>
-                <c:forEach begin="1" end="9" varStatus="loop">
+                <c:forEach begin="1" end="11" varStatus="loop">
                     <td></td>
                 </c:forEach>
             </tr>
@@ -66,7 +66,7 @@
                 <td>
                     <form action="payment" method="post">
                         <button type="submit" class="btn purple kurvTekst">
-                            Til kassen
+                            Betal
                         </button>
                         <br>
                     </form>
