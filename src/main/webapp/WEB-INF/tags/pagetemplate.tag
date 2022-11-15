@@ -43,7 +43,7 @@
                 </c:if>
 
                 <c:if test="${sessionScope.user == null }">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/index.jsp">Login</a>
                 </c:if>
 
                 <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">

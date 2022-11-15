@@ -21,7 +21,7 @@
 --%>
         <c:if test="${sessionScope.user == null}">
             <p>Du er ikke logget på. Dette kan du gøre her: <a
-                    href="../login.jsp">Login</a></p>
+                    href="../index.jsp">Login</a></p>
         </c:if>
 
         <form action="addCupcakes" method="post">
