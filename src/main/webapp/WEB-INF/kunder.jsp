@@ -15,6 +15,18 @@
     <jsp:body>
         <br>
 
+        <h4> Her kan du fylde penge på kontoen</h4>
+
+        <form action="addMoney" method="post">
+            <label for="username">Brugernavn: </label>
+            <input type="text" id="username" name="username"/>
+            <label for="amount">Indbetal til konto: </label>
+            <input type="number" id="amount" name="amount"/>
+            <input type="submit" value="Indbetal"/>
+        </form>
+
+
+
         <form method="post">
             <h3>Behandles</h3>
             <table class="table table-striped">

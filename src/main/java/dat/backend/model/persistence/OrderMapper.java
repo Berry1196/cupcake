@@ -309,4 +309,27 @@ public class OrderMapper {
         return adminOrderMap;
 
     }
+
+    public static int getUserBalance(String username, ConnectionPool connectionPool) {
+
+        String sql = "SELECT balance FROM cupcake.user where username = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int balance = rs.getInt("balance");
+                    return balance;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

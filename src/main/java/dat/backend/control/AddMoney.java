@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "AddMoney", value = "/addMoney")
 public class AddMoney extends HttpServlet {
@@ -31,17 +32,21 @@ public class AddMoney extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
-        User user = (User) session.getAttribute("user");
         int amount = Integer.parseInt(request.getParameter("amount"));
-        int userBalance = user.getBalance();
+        String username = request.getParameter("username");
 
-        int newBalance = userBalance + amount;
-        user.setBalance(newBalance);
-        UserFacade.updateBalance(user.getUsername(), newBalance, connectionPool);
+        int currentBalance = OrderFacade.getUserBalance(username, connectionPool);
+        int newBalance = currentBalance + amount;
 
-        request.setAttribute("besked", "Du har nu tanket op  ");
-        request.getRequestDispatcher("WEB-INF/tankOp.jsp").forward(request, response);
+        UserFacade.updateBalance(username, newBalance, connectionPool);
+
+        request.setAttribute("besked", "Der er nu blevet tanket op");
+
+
+        Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
+        request.setAttribute("adminOrderList",adminOrderList);
+
+        request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request, response);
     }
 }

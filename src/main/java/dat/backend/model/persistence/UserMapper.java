@@ -59,6 +59,7 @@ class UserMapper {
 
     public static void updateBalance(String username, int balance, ConnectionPool connectionPool) {
         String sql = "UPDATE cupcake.user SET balance = ? WHERE username = ?";
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, balance);
@@ -71,6 +72,7 @@ class UserMapper {
             e.printStackTrace();
         }
     }
+
 
 
 }

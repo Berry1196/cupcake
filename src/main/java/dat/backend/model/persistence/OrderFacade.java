@@ -46,5 +46,9 @@ public class OrderFacade {
         return OrderMapper.getOrderListForAdminByOrderId(order_id, connectionPool);
     }
 
+    public static int getUserBalance(String username, ConnectionPool connectionPool){
+        return OrderMapper.getUserBalance(username, connectionPool);
+    }
+
 
 }
