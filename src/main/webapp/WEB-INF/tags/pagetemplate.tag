@@ -22,10 +22,24 @@
 <header>
     <div class="container pt-1">
         <div class="row">
+            <c:if test="${sessionScope.user != null && sessionScope.user.role == 'admin' }">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/toadmin">
+                    <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
+                         class="img-fluid center-block"/>
+                </a>
+            </c:if>
+            <c:if test="${sessionScope.user == null}">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
                      class="img-fluid center-block"/>
             </a>
+            </c:if>
+            <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/towelcome">
+                    <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
+                         class="img-fluid center-block"/>
+                </a>
+            </c:if>
         </div>
     </div>
 </header>
@@ -57,7 +71,6 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                     <a class="nav-item nav-link">Brugernavn: ${sessionScope.user.username}</a>
                     <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance}</a>
-
                 </c:if>
             </div>
         </div>
