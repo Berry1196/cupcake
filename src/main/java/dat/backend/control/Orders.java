@@ -21,18 +21,11 @@ public class Orders extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Order> orderIds = new ArrayList<>();
         Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
 
-        for (Order order: adminOrderList.values())
-        {
-            orderIds.add(order);
-        }
         request.setAttribute("adminOrderList",adminOrderList);
-        request.setAttribute("orderIds", orderIds);
 
         request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request,response);
-
     }
 
     @Override

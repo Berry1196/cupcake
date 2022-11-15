@@ -90,17 +90,14 @@
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            Roev 313<br/>
+            3700 Rønne
         </div>
         <div class="col">
-            <jsp:invoke fragment="footer"/>
-            <br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            <p>&copy; 2022 Olsker Cupcakes</p>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester efterår 2022
+            Olsker Cupcakes Incorporated<br/>
         </div>
     </div>
 
