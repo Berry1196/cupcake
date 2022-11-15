@@ -59,7 +59,7 @@ public class Payment extends HttpServlet {
             session.setAttribute("order", order);
 
         } else {
-            request.setAttribute("besked", "Du har ikke nok penge på kontoen. Tryk her for at tanke op:");
+            request.setAttribute("besked", "Du har ikke nok penge på kontoen");
 
             request.getRequestDispatcher("WEB-INF/betaling.jsp").forward(request, response);
         }

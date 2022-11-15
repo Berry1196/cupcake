@@ -13,28 +13,70 @@
         <p>Din indkøbskurv</p>
 
 
-        <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+        <table class="table table-striped">
+            <thead>
+            <tr class="text-end">
+                <th>Antal</th>
+                <th>Stk pris</th>
+                <th></th>
+                <th class="text-center">Top</th>
+                <th class="text-center">Bund</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+            </tr>
+            </thead>
 
-            <td> ID: ${cake.cakeIndex} - Antal: ${cake.quantity}- Stk: ${cake.cakePrice}kr -
-                Topping: ${cake.topping.toppingName} - Bottom: ${cake.bottom.bottomName} - Total: ${cake.totalCakePrice}kr
-            </td>
-            <br>
 
-        </c:forEach>
-        <br>
+            <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
+                <tr class="text-end">
+                    <td>${cake.quantity} x</td>
+                    <td>${cake.cakePrice} kr</td>
+                    <td></td>
+                    <td class="text-center">${cake.topping.toppingName}</td>
+                    <td class="text-center">${cake.bottom.bottomName}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> ${cake.totalCakePrice} kr</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </c:forEach>
+            <tr>
+                <c:forEach begin="1" end="9" varStatus="loop">
+                    <td></td>
+                </c:forEach>
+            </tr>
+            <tr class="text-end">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-end pt-3"><b>Den totale pris inkl. moms: </b></td>
+                <td></td>
+                <td></td>
+                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr</td>
 
-        Total beløb inkl. moms : ${sessionScope.shoppingCart.totalCartPrice}kr
+                <td>
+                </td>
 
-        <form action="payment" method="post">
-            <button>
-                Betal
-            </button>
-            <br>
-        </form>
-        <c:if test="${sessionScope.user.balance < sessionScope.shoppingCart.totalCartPrice}">
-            ${requestScope.besked}
-        </c:if>
+                <td>
+                    <form action="payment" method="post">
+                        <button type="submit" class="btn purple kurvTekst">
+                            Til kassen
+                        </button>
+                        <br>
+                    </form>
+                    <c:if test="${sessionScope.user.balance < sessionScope.shoppingCart.totalCartPrice}">
+                        ${requestScope.besked}
+                    </c:if>
+                </td>
 
+            </tr>
+        </table>
 
     </jsp:body>
 
