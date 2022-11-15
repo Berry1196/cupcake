@@ -23,7 +23,7 @@
 
             <tr>
                 <td>
-<%--                    ${sessionScope.order.order_id}--%>
+
                     ${sessionScope.order.order_id}
                 </td>
                 <td>

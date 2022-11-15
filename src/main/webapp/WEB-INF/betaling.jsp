@@ -58,7 +58,7 @@
                 <td class="text-end pt-3"><b>Den totale pris inkl. moms: </b></td>
                 <td></td>
                 <td></td>
-                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr</td>
+                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice},- kr.</td>
 
                 <td>
                 </td>

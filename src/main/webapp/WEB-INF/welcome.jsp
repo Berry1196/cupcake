@@ -15,10 +15,6 @@
 
     <jsp:body>
 
-        <%--<c:if test="${sessionScope.user != null}">
-            <p>Du er logget på som "${sessionScope.user.username}".</p>
-        </c:if>
---%>
         <c:if test="${sessionScope.user == null}">
             <p>Du er ikke logget på. Dette kan du gøre her: <a
                     href="../index.jsp">Login</a></p>

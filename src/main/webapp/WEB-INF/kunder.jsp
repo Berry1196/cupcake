@@ -22,9 +22,8 @@
             <input type="text" id="username" name="username"/>
             <label for="amount">Indbetal til konto: </label>
             <input type="number" id="amount" name="amount"/>
-            <button type="submit" value="Indbetal" class="btn purple kurvTekst">Indbetal<button/>
+            <button type="submit" value="Indbetal" class="btn purple kurvTekst m-3">Indbetal<button/>
         </form>
-
 
         <form method="post">
             <h3>Behandles</h3>
@@ -43,7 +42,7 @@
                 </tr>
                 </thead>
 
-                    <%--                            Map(shoppingcart, ordet)--%>
+
                 <c:forEach var="order" items="${requestScope.adminOrderList}">
                     <c:if test="${order.value.done == false}">
                         <tr>
@@ -62,14 +61,14 @@
                             </td>
                             <td></td>
                             <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).quantity}
+                                    ${order.key.cakesInCart.get(cakeIndex).quantity} stk.
                             </td>
                             <td>
                                     ${order.value.date}
 
                             </td>
                             <td>
-                                    ${order.key.totalCartPrice} kr.
+                                    ${order.key.totalCartPrice},- kr.
 
                             </td>
                             <td>
@@ -115,7 +114,7 @@
                     <td></td>
                     <td>
                             ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} bottom
-                                with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
+                        with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
                     </td>
                     <td></td>
                     <td>
