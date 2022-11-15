@@ -5,6 +5,7 @@ import dat.backend.model.entities.Order;
 import dat.backend.model.entities.ShoppingCart;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ public class ToggleItem extends HttpServlet {
         int order_id = Integer.parseInt(request.getParameter("order_id"));
         OrderFacade.toggleItem(order_id, connectionPool);
         Map<ShoppingCart, Order> adminOrderList = OrderFacade.getOrderListForAdmin(connectionPool);
-        request.setAttribute("adminOrderList",adminOrderList);
+        request.setAttribute("adminOrderList", adminOrderList);
 
         request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request, response);
 

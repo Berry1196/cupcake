@@ -12,21 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
-    private ConnectionPool connectionPool;
-
-    @Override
-    public void init() throws ServletException {
-        this.connectionPool = ApplicationStart.getConnectionPool();
-
-    }
+    private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
@@ -44,7 +37,6 @@ public class Login extends HttpServlet {
             User user = UserFacade.login(username, password, connectionPool);
             session = request.getSession();
             session.setAttribute("user", user); // adding user object to session scope
-
 
             Map<String, Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
             request.setAttribute("bottomMap", bottomMap);
@@ -65,10 +57,9 @@ public class Login extends HttpServlet {
             request.setAttribute("adminOrderList", adminOrderList);
 
 
-            if(user.getRole().equals("admin")) {
+            if (user.getRole().equals("admin")) {
                 request.getRequestDispatcher("WEB-INF/kunder.jsp").forward(request, response);
             }
-
 
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 
@@ -76,7 +67,6 @@ public class Login extends HttpServlet {
             request.setAttribute("besked", "Fejl ved login. Prøv igen");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-
 
     }
 

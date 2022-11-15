@@ -32,14 +32,14 @@
             <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
                 <tr class="text-end">
                     <td>${cake.quantity} x</td>
-                    <td>${cake.cakePrice} kr</td>
+                    <td>${cake.cakePrice} kr.</td>
                     <td></td>
                     <td class="text-center">${cake.topping.toppingName}</td>
                     <td class="text-center">${cake.bottom.bottomName}</td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td> ${cake.totalCakePrice},- kr.</td>
+                    <td> ${cake.totalCakePrice} kr.</td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -58,7 +58,7 @@
                 <td class="text-end pt-3"><b>Den totale pris inkl. moms: </b></td>
                 <td></td>
                 <td></td>
-                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice},- kr.</td>
+                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr.</td>
 
                 <td>
                 </td>

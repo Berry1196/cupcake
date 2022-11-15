@@ -10,90 +10,97 @@
 
     <jsp:body>
         <br>
-        <div class="container light-grey text-center p-2">
-            <h3>Behandles</h3>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Ordre ID</th>
-                    <th>Cupcake</th>
-                    <th>Antal</th>
-                    <th>Dato</th>
-                    <th>Total Pris</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
 
-                <c:forEach var="order" items="${requestScope.orderListUser}">
-                    <c:if test="${order.value.done == false}">
-                        <tr>
-                            <td>
-                                    ${order.value.order_id}
-                            </td>
-                            <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} bottom
-                                with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
-                            </td>
-                            <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).quantity} stk.
-                            </td>
-                            <td>
-                                    ${order.value.date}
-                            </td>
-                            <td>
-                                    ${order.key.totalCartPrice},- kr.
-                            </td>
-                            <td>
-                                Vi er ved at bage dine kager
-                            </td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
-            </table>
+        <h3>Behandles</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Ordre ID</th>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Dato</th>
+                <th>Total Pris</th>
+                <th>Status</th>
+            </tr>
+            </thead>
 
-            <br>
-            <h3>Klar til udlevering</h3>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Ordre ID</th>
-                    <th>Cupcake</th>
-                    <th>Antal</th>
-                    <th>Dato</th>
-                    <th>Total Pris</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
+            <c:forEach var="order" items="${requestScope.orderListUser}">
+                <c:if test="${order.value.done == false}">
+                    <tr>
+                        <td>
+                                ${order.value.order_id}
+                        </td>
+                        <td>
+                            <c:forEach var="cake" items="${order.key.cakesInCart}">
+                                ${cake.bottom.bottomName} bottom with ${cake.topping.toppingName} topping
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="cake" items="${order.key.cakesInCart}">
+                                ${cake.quantity} stk.
+                            </c:forEach>
+                        </td>
+                        <td>
+                                ${order.value.date}
+                        </td>
+                        <td>
+                                ${order.key.totalCartPrice} kr.
+                        </td>
+                        <td>
+                            Vi er ved at bage dine kager
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </table>
 
-                    <%--                            Map(shoppingcart, ordet)--%>
-                <c:forEach var="order" items="${requestScope.orderListUser}">
-                    <c:if test="${order.value.done == true}">
-                        <tr>
-                            <td>
-                                    ${order.value.order_id}
-                            </td>
-                            <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).bottom.bottomName} bottom
-                                with ${order.key.cakesInCart.get(cakeIndex).topping.toppingName} topping
-                            </td>
-                            <td>
-                                    ${order.key.cakesInCart.get(cakeIndex).quantity}
-                            </td>
-                            <td>
-                                    ${order.value.date}
-                            </td>
-                            <td>
-                                    ${order.key.totalCartPrice},- kr.
-                            </td>
-                            <td>
-                                Dine kager er klar til afhentning
-                            </td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
 
-            </table>
-        </div>
+        <br>
+
+        <h3>Klar til udlevering</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Ordre ID</th>
+                <th>Cupcake</th>
+                <th>Antal</th>
+                <th>Dato</th>
+                <th>Total Pris</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <c:forEach var="order" items="${requestScope.orderListUser}">
+                <c:if test="${order.value.done == true}">
+                    <tr>
+                        <td>
+                                ${order.value.order_id}
+                        </td>
+                        <td>
+                            <c:forEach var="cake" items="${order.key.cakesInCart}">
+                                ${cake.bottom.bottomName} bottom with ${cake.topping.toppingName} topping
+                            </c:forEach>
+                        </td>
+                        <td>
+                            <c:forEach var="cake" items="${order.key.cakesInCart}">
+                                ${cake.quantity} stk.
+                            </c:forEach>
+                        </td>
+                        <td>
+                                ${order.value.date}
+                        </td>
+                        <td>
+                                ${order.key.totalCartPrice} kr.
+                        </td>
+                        <td>
+                            Kagerne er klar til afhentning
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+
+        </table>
+
         <br>
 
     </jsp:body>

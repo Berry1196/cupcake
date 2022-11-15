@@ -23,7 +23,7 @@ class UserMapper {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                if(rs.next()) {
+                if (rs.next()) {
                     String role = rs.getString("role");
                     int balance = rs.getInt("balance");
                     user = new User(username, password, role, balance);
@@ -47,7 +47,7 @@ class UserMapper {
                 ps.setString(2, password);
                 ps.setString(3, role);
                 int rowsAffected = ps.executeUpdate();
-                if(rowsAffected == 1) {
+                if (rowsAffected == 1) {
                     user = new User(username, password, role);
                 } else {
                     throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
@@ -76,7 +76,7 @@ class UserMapper {
     }
 
 
-     static List<String> getAllUsers(ConnectionPool connectionPool) {
+    static List<String> getAllUsers(ConnectionPool connectionPool) {
         String sql = "SELECT username from cupcake.user";
 
         List<String> userNameList = new ArrayList<>();

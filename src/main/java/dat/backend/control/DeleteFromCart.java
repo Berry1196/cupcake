@@ -18,7 +18,6 @@ public class DeleteFromCart extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-
         int cakeIndex = Integer.parseInt(request.getParameter("cakeIndex"));
         request.setAttribute("cakeIndex", cakeIndex);
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");

@@ -1,17 +1,14 @@
 package dat.backend.model.persistence;
 
-import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.Topping;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class ToppingMapper {
 
-    public static Map<String , Topping> getToppings(ConnectionPool connectionPool) {
+    public static Map<String, Topping> getToppings(ConnectionPool connectionPool) {
         Map<String, Topping> toppingMap = new TreeMap<>();
         try (Connection connection = connectionPool.getConnection()) {
 

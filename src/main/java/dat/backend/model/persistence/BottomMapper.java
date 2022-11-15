@@ -3,8 +3,6 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.Bottom;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -12,7 +10,6 @@ public class BottomMapper {
 
     public static Map<String , Bottom> getBottoms(ConnectionPool connectionPool) {
         Map<String , Bottom> bottomMap = new TreeMap<>();
-        //List<Bottom> bottomList = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection()) {
 
             String sql = "SELECT * FROM bottom";
@@ -27,7 +24,6 @@ public class BottomMapper {
 
                     Bottom bottom = new Bottom(bottomId, bottomName, bottomPrice);
                     bottomMap.put(bottomName, bottom);
-                    //bottomList.add(bottom);
                 }
             }
         } catch (SQLException throwables) {

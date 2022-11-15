@@ -68,7 +68,7 @@
 
                             </td>
                             <td>
-                                    ${order.key.totalCartPrice},- kr.
+                                    ${order.key.totalCartPrice} kr.
 
                             </td>
                             <td>
@@ -118,7 +118,7 @@
                     </td>
                     <td></td>
                     <td>
-                            ${order.key.cakesInCart.get(cakeIndex).quantity}
+                            ${order.key.cakesInCart.get(cakeIndex).quantity} stk.
                     </td>
                     <td>
                             ${order.value.date}

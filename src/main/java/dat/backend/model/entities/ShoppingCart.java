@@ -27,11 +27,6 @@ public class ShoppingCart {
         return cakesInCart;
     }
 
-    public ArrayList<Cake> removeCake(int cakeId) {
-        cakesInCart.remove(cakeId);
-        return cakesInCart;
-    }
-
     public ArrayList<Cake> getCakesInCart() {
         return cakesInCart;
     }
@@ -49,26 +44,23 @@ public class ShoppingCart {
         totalCartPrice -= cakesInCart.get(cakeIndex).getTotalCakePrice();
         cakesInCart.remove(cakeIndex);
         indexUpdate();
-
     }
 
-public void updateCake(int index, Cake cake){
+    public void updateCake(int index, Cake cake) {
         totalCartPrice -= cakesInCart.get(index).getTotalCakePrice();
         cakesInCart.set(index, cake);
         totalCartPrice += cake.getTotalCakePrice();
         indexUpdate();
-
-
-}
-
-public void indexUpdate(){
-    int index = 0;
-    for (Cake cake : cakesInCart) {
-        cake.setCakeIndex(index);
-        index ++;
     }
 
-}
+    public void indexUpdate() {
+        int index = 0;
+        for (Cake cake : cakesInCart) {
+            cake.setCakeIndex(index);
+            index++;
+        }
+
+    }
 
 }
 

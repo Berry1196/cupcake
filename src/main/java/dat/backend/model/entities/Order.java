@@ -27,7 +27,6 @@ public class Order {
         return date;
     }
 
-
     public Boolean getDone() {
         return done;
     }

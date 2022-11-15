@@ -1,6 +1,5 @@
 package dat.backend.control;
 
-import com.mysql.cj.protocol.result.AbstractResultsetRow;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.*;
 import dat.backend.model.persistence.BottomFacade;
@@ -12,7 +11,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "AddCupcakes", value = "/addCupcakes")
@@ -42,7 +40,7 @@ public class AddCupcakes extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         try {
-            if(bottom != null || topping != null) {
+            if (bottom != null || topping != null) {
                 ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
                 Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping), quantity);
                 session.setAttribute("cakePrice", cake.getCakePrice());
@@ -65,7 +63,6 @@ public class AddCupcakes extends HttpServlet {
             request.setAttribute("besked", besked);
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
         }
-
 
     }
 }

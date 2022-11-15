@@ -16,7 +16,6 @@ public class Cake {
         this.cakeIndex = cakeIndex;
     }
 
-
     public Bottom getBottom() {
         return bottom;
     }
@@ -40,9 +39,11 @@ public class Cake {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public int getCakePrice() {
         return cakePrice = bottom.getBottomPrice() + topping.getTopppingPrice();
     }
+
     public int getTotalCakePrice() {
         return totalCakePrice = (bottom.getBottomPrice() + topping.getTopppingPrice()) * quantity;
     }
@@ -50,11 +51,10 @@ public class Cake {
     public void setCakePrice() {
         this.cakePrice = bottom.getBottomPrice() + topping.getTopppingPrice();
     }
+
     public void setTotalCakePrice() {
         this.totalCakePrice = (bottom.getBottomPrice() + topping.getTopppingPrice()) * quantity;
     }
-
-
 
     public int getCakeIndex() {
         return cakeIndex;
@@ -63,8 +63,5 @@ public class Cake {
     public void setCakeIndex(int cakeIndex) {
         this.cakeIndex = cakeIndex;
     }
-
-
-
 
 }

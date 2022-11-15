@@ -34,7 +34,6 @@ public class Payment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
@@ -43,7 +42,7 @@ public class Payment extends HttpServlet {
         int totalCartPrice = shoppingCart.getTotalCartPrice();
         int newBalance = userBalance - totalCartPrice;
 
-        if(userBalance > totalCartPrice) {
+        if (userBalance > totalCartPrice) {
             user.setBalance(newBalance);
             UserFacade.updateBalance(user.getUsername(), newBalance, connectionPool);
 
@@ -51,7 +50,7 @@ public class Payment extends HttpServlet {
             Order order = OrderFacade.getOrderByUsername(user.getUsername(), connectionPool);
 
             for (Cake cake : shoppingCart.getCakesInCart()) {
-                 OrderFacade.saveOrderToOrdernline(order.getOrder_id(), new Cake(cake.getBottom(), cake.getTopping(), cake.getQuantity()), connectionPool);
+                OrderFacade.saveOrderToOrdernline(order.getOrder_id(), new Cake(cake.getBottom(), cake.getTopping(), cake.getQuantity()), connectionPool);
                 session.setAttribute("cakeIndex", cake.getCakeIndex());
                 session.setAttribute("cake", cake);
             }
@@ -68,6 +67,5 @@ public class Payment extends HttpServlet {
 
         request.getRequestDispatcher("WEB-INF/kvittering.jsp").forward(request, response);
     }
-
 
 }

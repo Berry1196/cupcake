@@ -23,12 +23,11 @@
 
             <tr>
                 <td>
-
-                    ${sessionScope.order.order_id}
+                        ${sessionScope.order.order_id}
                 </td>
                 <td>
                     <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
-                             ${cake.bottom.bottomName} bottom with ${cake.topping.toppingName} topping <br>
+                        ${cake.bottom.bottomName} bottom with ${cake.topping.toppingName} topping <br>
                     </c:forEach>
 
                 </td>
@@ -36,17 +35,15 @@
                     <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
                         ${cake.quantity} stk. <br>
                     </c:forEach>
-
                 </td>
                 <td>
                         ${sessionScope.order.date}
                 </td>
                 <td>
-                        ${sessionScope.shoppingCart.totalCartPrice},- kr.
+                        ${sessionScope.shoppingCart.totalCartPrice} kr.
                 </td>
                 <td>
                     Vi går straks i gang <br> med at bage kagerne!
-<%--                        ${sessionScope.order.done}--%>
                 </td>
             </tr>
         </table>

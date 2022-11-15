@@ -50,12 +50,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-            <div class="navbar-nav pe-2">
-                <c:if test="${sessionScope.user != null}">
-                    <a class="nav-item nav-link">${sessionScope.user.username}</a>
-                    <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance},- kr.</a>
-                </c:if>
-            </div>
+        <div class="navbar-nav pe-2">
+            <c:if test="${sessionScope.user != null}">
+                <a class="nav-item nav-link">${sessionScope.user.username}</a>
+                <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance} kr.</a>
+            </c:if>
+        </div>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">

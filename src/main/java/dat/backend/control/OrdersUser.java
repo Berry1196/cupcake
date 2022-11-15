@@ -14,32 +14,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
+
 import java.util.Map;
 
 @WebServlet(name = "OrdersUser", value = "/ordersUser")
 public class OrdersUser extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Map<ShoppingCart, Order> orderListUser = OrderFacade.getOrderListUser(user.getUsername(), connectionPool);
-        request.setAttribute("orderListUser",orderListUser);
+        request.setAttribute("orderListUser", orderListUser);
 
-        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request,response);
-
+        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getAttribute("msg");
-
-
-
-        request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request,response);
 
     }
-
 
 }

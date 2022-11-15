@@ -4,7 +4,6 @@ import dat.backend.model.entities.Cake;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.ShoppingCart;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,10 +11,6 @@ public class OrderFacade {
 
     public static List<Order> getOrders(ConnectionPool connectionPool) {
         return OrderMapper.getOrders(connectionPool);
-    }
-
-    public static List<Order> getOrderListByUsername(String username, ConnectionPool connectionPool) {
-        return OrderMapper.getOrderListByUsername(username, connectionPool);
     }
 
     public static Map<ShoppingCart, Order> getOrderListUser(String username, ConnectionPool connectionPool) {
@@ -42,13 +37,8 @@ public class OrderFacade {
         OrderMapper.toggleItem(order_id, connectionPool);
     }
 
-    public static Map<ShoppingCart, Order> getOrderListForAdminByOrderId(int order_id, ConnectionPool connectionPool) {
-        return OrderMapper.getOrderListForAdminByOrderId(order_id, connectionPool);
-    }
-
     public static int getUserBalance(String username, ConnectionPool connectionPool){
         return OrderMapper.getUserBalance(username, connectionPool);
     }
-
 
 }

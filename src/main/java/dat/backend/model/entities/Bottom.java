@@ -14,10 +14,6 @@ public class Bottom {
         this.bottomIndex = bottomIndex;
     }
 
-//    public Bottom(String bottomName) {
-//        this.bottomName = bottomName;
-//    }
-
     @Override
     public String toString() {
         return "Bottom{" +

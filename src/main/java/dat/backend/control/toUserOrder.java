@@ -19,7 +19,7 @@ public class toUserOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Order> orderList = OrderFacade.getOrders(connectionPool);
-        request.setAttribute("orderList",orderList);
+        request.setAttribute("orderList", orderList);
         request.getRequestDispatcher("WEB-INF/ordre.jsp").forward(request, response);
     }
 

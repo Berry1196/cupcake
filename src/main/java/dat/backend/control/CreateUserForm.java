@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "CreateUserForm", value = "/createuserform")
 public class CreateUserForm extends HttpServlet {
@@ -39,14 +38,14 @@ public class CreateUserForm extends HttpServlet {
 
         try {
             for (String name : UserFacade.getAllUsers(connectionPool)) {
-                if(username.equals(name)) {
+                if (username.equals(name)) {
                     besked = "En bruger med dette navn findes allerede. Prøv igen!";
                     session.setAttribute("besked", besked);
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             }
 
-            if(newpassword.equals(repnewpassword)) {
+            if (newpassword.equals(repnewpassword)) {
                 User user = UserFacade.createUser(username, newpassword, role, connectionPool);
 
                 besked = "Du har nu oprettet en bruger. Venligst log på";
@@ -59,14 +58,13 @@ public class CreateUserForm extends HttpServlet {
 
             }
             besked = "Adgangskoderne er ikke ens. Prøv igen!";
-            request.setAttribute("besked", besked);
+            session.setAttribute("besked", besked);
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
 
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-
 
     }
 }

@@ -32,9 +32,8 @@ public class EditCake extends HttpServlet {
         Map<String, Topping> toppingMap = ToppingFacade.getToppings(connectionPool);
         request.setAttribute("toppingMap", toppingMap);
 
-        Map<String , Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
+        Map<String, Bottom> bottomMap = BottomFacade.getBottoms(connectionPool);
         request.setAttribute("bottomMap", bottomMap);
-
 
         String topping = request.getParameter("topping");
         String bottom = request.getParameter("bottom");
@@ -42,15 +41,12 @@ public class EditCake extends HttpServlet {
         int cakeIndex = Integer.parseInt(request.getParameter("cakeIndex"));
         request.setAttribute("cakeIndex", cakeIndex);
 
-
-        Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping),quantity);
+        Cake cake = new Cake(bottomMap.get(bottom), toppingMap.get(topping), quantity);
         session.setAttribute("theCake", cake);
 
 
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
         shoppingCart.updateCake(cakeIndex, cake);
-
-
 
         request.getRequestDispatcher("WEB-INF/kurv.jsp").forward(request, response);
 
