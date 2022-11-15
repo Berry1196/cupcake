@@ -29,10 +29,10 @@
                 </a>
             </c:if>
             <c:if test="${sessionScope.user == null}">
-            <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
-                     class="img-fluid center-block"/>
-            </a>
+                <a class="navbar-brand" href="index.jsp">
+                    <img src="${pageContext.request.contextPath}/images/olskercupcakes.png" width="1800px;"
+                         class="img-fluid center-block"/>
+                </a>
             </c:if>
             <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/towelcome">
@@ -43,12 +43,20 @@
         </div>
     </div>
 </header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+            <div class="navbar-nav pe-2">
+                <c:if test="${sessionScope.user != null}">
+                    <a class="nav-item nav-link">${sessionScope.user.username}</a>
+                    <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance}</a>
+                </c:if>
+            </div>
+
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
 
@@ -61,21 +69,18 @@
                 </c:if>
 
                 <c:if test="${sessionScope.user != null && sessionScope.user.role != 'admin'}">
-
-
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordersUser">Ordre</a>
-                    </c:if>
+                    <a class="nav-item nav-link"
+                       href="${pageContext.request.contextPath}/shoppingCartServlet">Kurv</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/ordersUser">Ordre</a>
+                </c:if>
 
                 <c:if test="${sessionScope.user != null}">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
-                    <a class="nav-item nav-link">Brugernavn: ${sessionScope.user.username}</a>
-                    <a class="nav-item nav-link">Saldo: ${sessionScope.user.balance}</a>
                 </c:if>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
 
 
 <div id="body" class="container mt-2" style="min-height: 400px;">
@@ -88,15 +93,15 @@
 <!-- Footer -->
 <div class="container mt-3">
     <hr/>
-    <div class="row mt-4">
+    <div class="row mt-4 mb-5">
         <div class="col">
             Roev 313<br/>
             3700 Rønne
         </div>
-        <div class="col">
+        <div class="text-center col">
             <p>&copy; 2022 Olsker Cupcakes</p>
         </div>
-        <div class="col">
+        <div class="text-end col">
             Olsker Cupcakes Incorporated<br/>
         </div>
     </div>

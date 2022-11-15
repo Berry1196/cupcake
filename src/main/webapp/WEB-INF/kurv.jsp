@@ -15,7 +15,7 @@
 
     <jsp:body>
 
-       <br>
+        <br>
 
         <table class="table table-striped">
             <thead>
@@ -33,54 +33,64 @@
 
             <c:forEach var="cake" items="${sessionScope.shoppingCart.cakesInCart}">
                 <tr class="text-end">
-                    <td>${cake.quantity} x </td>
+                    <td>${cake.quantity} x</td>
                     <td>${cake.cakePrice} kr</td>
                     <td class="text-center">${cake.topping.toppingName}</td>
                     <td class="text-center">${cake.bottom.bottomName}</td>
-                    <td> </td>
+                    <td></td>
                     <td> ${cake.totalCakePrice} kr</td>
 
                     <td>
-                    <form action="editcart" method="post">
+                        <form action="editcart" method="post">
 
-                        <button name="cakeIndex" value="${cake.cakeIndex}">
-                            Rediger
-                        </button>
+                            <button name="cakeIndex" value="${cake.cakeIndex}">
+                                Rediger
+                            </button>
 
-                    </form>
+                        </form>
                     </td>
                     <td>
-                    <form action="deletefromcart" method="post">
+                        <form action="deletefromcart" method="post">
 
-                        <button name="cakeIndex" value="${cake.cakeIndex}">
-                            Slet
-                        </button>
+                            <button name="cakeIndex" value="${cake.cakeIndex}">
+                                Slet
+                            </button>
 
-                    </form>
+                        </form>
                     </td>
 
                 </tr>
             </c:forEach>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr class="text-end">
-                <td> </td>
-                <td> </td>
+            <tr>
                 <td></td>
-                <td> </td>
-                <td class="text-end pt-3" ><b>I alt:</b></td>
-                <td class="pt-3" >${sessionScope.shoppingCart.totalCartPrice} kr</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="text-end">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-end pt-3"><b>I alt:</b></td>
+                <td class="pt-3">${sessionScope.shoppingCart.totalCartPrice} kr</td>
 
+                <td>
+
+                </td>
                 <td>
                     <form action="topayment" method="post" name="${sessionScope.shoppingCart.cakesInCart}">
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn purple kurvTekst">
                             Til kassen
                         </button>
                         <br>
 
                     </form>
-                </td>
-                <td>
 
                 </td>
 

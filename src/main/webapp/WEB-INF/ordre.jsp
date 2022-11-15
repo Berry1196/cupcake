@@ -9,9 +9,7 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <p>Oversigt over ordre </p>
-
+        <br>
         <h3>Behandles</h3>
 
         <table class="table table-striped">
