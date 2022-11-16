@@ -7,8 +7,6 @@
 <t:pagetemplate>
     <jsp:attribute name="header">
              Login
-        <br>
-        <br>
     </jsp:attribute>
 
 
